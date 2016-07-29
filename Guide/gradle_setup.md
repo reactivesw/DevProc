@@ -33,7 +33,7 @@ then,select a wizard
 
 ![](resources/select_a_wizard.png)
 
-click next button,and go ahead,
+click next button,and go ahead  ,
 
 ![](resources/before_finish.png)
 
