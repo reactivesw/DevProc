@@ -76,6 +76,7 @@ and the context of groovy class like this:
 
 How do you run this test? You run it in the same way as a JUnit test! Again, right-click the Groovy class and choose Run As > JUnit Test from the pop-up menu. The result in Eclipse is shown:
 
+
 ![](resources/unit_test.png)
 
 Obviously ,the test is successful,but if we wanna see how will spock "reacts"  when test fails,so we change result to 3,and you will see
