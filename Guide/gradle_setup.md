@@ -5,6 +5,7 @@ open Eclipse,click "Help" in top menu bar
 ![](resources/software_market.png)
 
 and type "Gradle" in the search area,then press Enter,hence,you will see the plugin as below,which is official Gradle support for Eclipse,and install it
+
 ![](resources/gradle.png)
 
 #### 2. install checkStyle plugin
@@ -20,24 +21,36 @@ as same as what shows above.
 #### 4. install findbugs plugin
 
 as same as what shows above except name of the plugin
+
 ![](resources/findbugs.png)
 
 #### 5.set up to build
 it seems the preparation is done,can not wait to start build.so firstly create a new directory and start STS using the newly created directory as its workspace directory.
+
 ![](resources/create_new_project.png)
+
 then,select a wizard
+
 ![](resources/select_a_wizard.png)
+
 click next button,and go ahead,
+
 ![](resources/before_finish.png)
+
 click finish button.
 After everything is done ,the Package Explorer looks like this
+
 ![](resources/package_explorer.png)
 
 Note that Gradle is as same as Maven in a way,which follows the convention over configuration paradigm by supporting sensible
 default configuration for your project as well as a standardized build lifecycle.it means that sepecific directory is for specific purpose.This is default layout of Gradle which i find in the Gradle official website
+
 ![](resources/layout.png)
+
 Open the build.gradle file,it looks like that originally
+
 ![](resources/build_gradle.png)
+
 in order to intergrate checkstyle ,pmd,findbugs plugin with Gradle,you should add this in your build.gradle
 ```
 apply plugin: 'maven'
@@ -115,12 +128,18 @@ pmd  {
 ```
 this is a customized configuration that "tells" gradle how to build you project
 then,you build.gradle file looks like above
+
 ![](resources/build_gradle_latest1.png)
+
 ![](resources/build_gradle_latest2.png)
+
 ![](resources/build_gradle_latest3.png)
+
 last but not least,create a new directory named 'config' in the  rootProject,then create a new directory named 'checkstyle' in config,and add a file named checkstyle.xml [checkstyle.xml](resources/checkstyle.xml) which is the code guide file
 for checkstyle  .when everything finish ,it looks like below.
+
 ![](resources/config.png)
+
 Finally,everything is done,time to build the project ,open the Terminal ,and go to your rootProject,and type
 ```
 gradle build
