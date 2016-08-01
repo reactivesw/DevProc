@@ -47,7 +47,7 @@ Each service has a repository that can be built, tested, released and deployed i
 5. Send a pull request (https://help.github.com/articles/using-pull-requests/). 
 5. Ask a peer to do a code review -- optionally there are some discussions and changes.
 6. Make changes on the branch as needed. The pull request will update automatically.  
-6. Once changes are approved by the reviewer, merge the pull request(https://help.github.com/articles/merging-a-pull-request/), once the branch is ready to go, using the big green button.
+6. Once changes are approved by the reviewer, the developer merges the pull request(https://help.github.com/articles/merging-a-pull-request/), once the branch is ready to go, using the big green button.
 7. Delete the branch (https://help.github.com/articles/deleting-unused-branches/) in the pull request or on the branches page. 
 
 Youtube https://youtu.be/oFYyTZwMyAg has a short tutorial for pull, reveiw and merge. 
