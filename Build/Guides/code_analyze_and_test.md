@@ -68,7 +68,7 @@ findbug是工作在字节码级别的，所以它就能做到一些pmd力所不�
 
 现在就来说说这几个工具怎么用吧，把我这个[resources/code_analyze_and_test](code_analyze_and_test)文件夹拷到你的项目根目录下，然后在你的build.gradle 文件里面加上下面两句代码
 
-![](resources/package_explorer.png)
+![package explorer](resources/package_explorer.png)
 ```
 apply from: 'code_analyze_and_test/code_analyzer.gradle'
 apply from: 'code_analyze_and_test/code_unit_test.gradle'
