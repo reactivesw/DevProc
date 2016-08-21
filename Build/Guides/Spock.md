@@ -1,6 +1,6 @@
 ### Spock 是什么?
 
-![](what_is_spock.png)
+![](resources/what_is_spock.png)
 
 简而言之，Spock是一个更全面的用于Java(Groovy)的测试框架,之所以说Spock更加全面，
 是因为Spock集合了现有的Java测试库，如上图。Spock可以让我们更容易地写出表达性更强
