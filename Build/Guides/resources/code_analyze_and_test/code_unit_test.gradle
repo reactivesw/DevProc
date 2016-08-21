@@ -1,0 +1,23 @@
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+dependencies {
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.3'
+    compile group: 'org.codehaus.groovy', name: 'groovy-backports-compat23', version:'2.3.7'
+    testCompile group: 'org.spockframework', name: 'spock-core', version:'1.0-groovy-2.4'
+    testCompile group: 'cglib', name: 'cglib-nodep', version:'3.1'
+    testCompile group: 'org.objenesis', name: 'objenesis', version:'2.1'
+}
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        /*csv.enabled false*/
+        /*html.destination "build/reports/jacoco/jacoco.html"*/
+    }
+}
+check.dependsOn jacocoTestReport

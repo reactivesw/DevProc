@@ -1,0 +1,83 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: "checkstyle"
+apply plugin: "pmd"
+apply plugin: "findbugs"
+checkstyle.toolVersion='6.15'
+pmd.toolVersion='5.5.0'
+repositories {
+     maven { url "http://jcenter.bintray.com" }
+     maven { url "https://repo.maven.apache.org/maven2" }
+
+}
+
+
+checkstyle{
+    /*source = fileTree('src')*/
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    ignoreFailures = true
+    configFile = 'code_analyze_and_test/config/checkstyle/checkstyle.xml' as File
+ 
+ }
+ pmd  {
+     ignoreFailures=true
+     ruleSetFiles = files("code_analyze_and_test/config/pmd/ruleset.xml")
+      //ruleSets=[
+             ////'Java-android',
+              //'java-basic',
+              //'java-braces',
+              //'java-clone',
+              //'java-codesize',
+              ////'java-comments',
+              //'java-controversial',
+              //'java-coupling',
+              //'java-design',
+              //'java-empty',
+              //'java-finalizers',
+              //'java-imports',
+              //'java-j2ee',
+              //'java-javabeans',
+              //'java-junit',
+              //'java-logging-jakarta-commons',
+              //'java-logging-java',
+              //'java-migrating',
+              //'java-naming',
+              //'java-optimizations',
+              //'java-strictexception',
+              //'java-strings',
+              //'java-sunsecure',
+              //'java-typeresolution',
+              //'java-unnecessary',
+              //'java-unusedcode'
+     //]
+     //source = fileTree('src')
+     ignoreFailures = true
+     sourceSets = [sourceSets.main]
+ }
+  findbugs {
+     /*toolVersion = "3.0.1"*/
+     sourceSets = [sourceSets.main]
+       ignoreFailures = true
+    /*reportsDir = file("$project.buildDir/findbugsReports")*/
+    effort = "max"
+    reportLevel = "medium"
+    /*visitors = ["FindSqlInjection", "SwitchFallthrough"]*/
+    /*omitVisitors = ["FindNonShortCircuit"]*/
+    /*includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")*/
+    /*excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")*/
+    /*excludeBugsFilter = file("$rootProject.projectDir/config/findbugs/excludeBugsFilter.xml")*/
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        /*html.stylesheet resources.text.fromFile('config/xsl/findbugs-custom.xsl')*/
+        html {
+          destination "build/reports/findbugs/findbugs.html"
+        }
+    }
+}
+task wrapper(type: Wrapper){
+     gradleVersion='3.0'
+}
