@@ -201,7 +201,7 @@ def "A basket with one product has equal weight"(){
 从上面的代码我们可以看到，given和and都是用来初始化类，只是将根据Basket和Product
 类型进行了细分。如下图
 
-!()[resources/and.png]
+![](resources/and.png)
 
 使用and block可以让我们的代码结构更加优美易懂。如果and是紧跟在when后面，那么and
 就是被赋予了when block的功能，如此类推
