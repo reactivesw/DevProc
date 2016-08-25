@@ -57,7 +57,7 @@ Note that we all know in maven,if we write some dependencies in the pom.xml,and 
 gradle eclipse
 ```
 in the terminal when your working directory is the rootProject.
-#### Time to Write Test with Spockframework
+#### Time to Write Test with Spock Framework
 Firstly,create a new source folder named "groovy" in the test direstory according "convention over configration paradigm "
 
 ![](resources/source_folder.png)
