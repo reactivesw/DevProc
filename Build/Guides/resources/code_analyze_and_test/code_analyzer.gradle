@@ -79,6 +79,3 @@ tasks.withType(FindBugs) {
         html { destination "build/reports/findbugs/findbugs.html" }
     }
 }
-
-
-task wrapper(type: Wrapper){ gradleVersion='3.0' }
