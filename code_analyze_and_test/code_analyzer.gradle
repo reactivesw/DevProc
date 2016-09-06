@@ -10,52 +10,27 @@ repositories {
 }
 
 /*************checkstyle(use google java style)***************/
-checkstyle.toolVersion='6.15'
+
 checkstyle{
   /*source = fileTree('src')*/
+  toolVersion='6.15'
   ignoreFailures = false
   sourceSets = [sourceSets.main]
   configFile = 'code_analyze_and_test/config/checkstyle/checkstyle.xml' as File
   //exclude the package you do not want to check
-  checkstyleMain.exclude 'io/reactivesw/customerauthentication/infrastructure/grpc/**'
+  //  checkstyleMain.exclude 'io/reactivesw/customerauthentication/infrastructure/grpc/**'
 }
 
 /*************PMD(Project Manager Design)***************/
+pmd.toolVersion='5.5.0'
 pmd  {
   ignoreFailures=false
-  ruleSets=[
-    /*'Java-android',*/
-    'java-basic',
-    'java-braces',
-    'java-clone',
-    'java-codesize',
-    'java-coupling',
-    'java-design',
-    'java-empty',
-    'java-finalizers',
-    'java-imports',
-    'java-j2ee',
-    'java-javabeans',
-    'java-junit',
-    //        'java-logging-jakarta-commons',
-    //        'java-logging-java',
-    //        'java-comments',
-    //        'java-controversial',
-    //        'java-optimizations',
-    'java-migrating',
-    'java-naming',
-    'java-strictexception',
-    'java-strings',
-    'java-sunsecure',
-    'java-typeresolution',
-    'java-unnecessary',
-    'java-unusedcode'
-  ]
-  /*source = fileTree('src')*/
+  ruleSetFiles = files("code_analyze_and_test/config/pmd/ruleset.xml")
+
   sourceSets = [sourceSets.main]
 }
 tasks.withType(Pmd) {  //exclude the package you do not want to check
-  exclude 'io/reactivesw/customerauthentication/infrastructure/grpc/*'  }
+  exclude 'io/reactivesw/customer/authentication/CustomerAuthWebserverApp.java'  }
 
 
 /*************find bug***************/

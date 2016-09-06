@@ -13,7 +13,7 @@ The Clone Implementation ruleset contains a collection of rules that find questi
     		since="1.4"
          message="Object clone() should be implemented with super.clone()"
          class="net.sourceforge.pmd.lang.rule.XPathRule"
-          externalInfoUrl="${pmd.website.baseurl}/rules/java/clone.html#ProperCloneImplementation">
+          externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/clone.html#ProperCloneImplementation">
      <description>
 Object clone() should be implemented with super.clone().
      </description>
@@ -51,7 +51,7 @@ class Foo{
     		since="1.9"
          message="clone() method should throw CloneNotSupportedException"
          class="net.sourceforge.pmd.lang.rule.XPathRule"
-         externalInfoUrl="${pmd.website.baseurl}/rules/java/clone.html#CloneThrowsCloneNotSupportedException">
+         externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/clone.html#CloneThrowsCloneNotSupportedException">
          <description>
 The method clone() should throw a CloneNotSupportedException.
          </description>
@@ -91,7 +91,7 @@ and count(NameList/Name[contains
     	  since="1.9"
         message="clone() method should be implemented only if implementing Cloneable interface"
         class="net.sourceforge.pmd.lang.rule.XPathRule"
-          externalInfoUrl="${pmd.website.baseurl}/rules/java/clone.html#CloneMethodMustImplementCloneable">
+          externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/clone.html#CloneMethodMustImplementCloneable">
         <description>
 The method clone() should only be implemented if the class implements the Cloneable interface with the exception of a final method that only throws CloneNotSupportedException.
         </description>
@@ -134,7 +134,7 @@ public class MyClass {
         since="5.4.0"
         message="The return type of the clone() method must be the class name when implements Cloneable"
         class="net.sourceforge.pmd.lang.rule.XPathRule"
-        externalInfoUrl="${pmd.website.baseurl}/rules/java/clone.html#CloneMethodReturnTypeMustMatchClassName">
+        externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/clone.html#CloneMethodReturnTypeMustMatchClassName">
         <description>
 If a class implements cloneable the return type of the method clone() must be the class name. That way, the caller
 of the clone method doesn't need to cast the returned clone to the correct type.
@@ -178,7 +178,7 @@ public class Foo implements Cloneable {
         since="5.4.0"
         message="clone() method must be public if the class implements Cloneable"
         class="net.sourceforge.pmd.lang.rule.XPathRule"
-        externalInfoUrl="${pmd.website.baseurl}/rules/java/clone.html#CloneMethodMustBePublic">
+        externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/clone.html#CloneMethodMustBePublic">
         <description>
 The java Manual says "By convention, classes that implement this interface should override
 Object.clone (which is protected) with a public method."

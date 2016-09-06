@@ -13,7 +13,7 @@ Rules intended to catch errors related to code comments
     		  since="5.1"
         message="Comment is required"
         class="net.sourceforge.pmd.lang.java.rule.comments.CommentRequiredRule"
-          externalInfoUrl="${pmd.website.baseurl}/rules/java/comments.html#CommentRequired">
+          externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/comments.html#CommentRequired">
     <description>
 Denotes whether comments are required (or unwanted) for specific language elements.
     </description>
@@ -33,7 +33,7 @@ Denotes whether comments are required (or unwanted) for specific language elemen
     		  since="5.0"
         message="Comment is too large"
         class="net.sourceforge.pmd.lang.java.rule.comments.CommentSizeRule"
-          externalInfoUrl="${pmd.website.baseurl}/rules/java/comments.html#CommentSize">
+          externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/comments.html#CommentSize">
     <description>
 Determines whether the dimensions of non-header comments found are within the specified limits.
     </description>
@@ -64,7 +64,7 @@ Determines whether the dimensions of non-header comments found are within the sp
     		  since="5.0"
      message="Invalid words or phrases found"
      class="net.sourceforge.pmd.lang.java.rule.comments.CommentContentRule"
-          externalInfoUrl="${pmd.website.baseurl}/rules/java/comments.html#CommentContent">
+          externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/comments.html#CommentContent">
      <description>
 A rule for the politically correct... we don't want to offend anyone.
   </description>
@@ -80,7 +80,7 @@ A rule for the politically correct... we don't want to offend anyone.
       since="5.4.0"
       class="net.sourceforge.pmd.lang.java.rule.comments.CommentDefaultAccessModifierRule"
       message="Missing commented default access modifier"
-      externalInfoUrl="${pmd.website.baseurl}/rules/java/comments.html#CommentDefaultAccessModifier">
+      externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/comments.html#CommentDefaultAccessModifier">
     <description>
         To avoid mistakes if we want that a Method, Field or Nested class have a default access modifier
         we must add a comment at the beginning of the Method, Field or Nested class.
