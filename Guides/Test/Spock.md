@@ -21,15 +21,15 @@ Spock，甚至用Spock来代替Junit呢？（其实这个问题我也疑惑过�
 下面就用一些简单的例子来解释一下
 一个简单的加法
 
-![](resources/Adder.png)
+![](../Build/resources/Adder.png)
 
 然后是Junit的测试用例
 
-![](resources/JAdder.png)
+![](../Build/resources/JAdder.png)
 
 然后是Spock的测试用例
 
-![](resources/AdderSpec.png)
+![](../Build/resources/AdderSpec.png)
 
 是不是觉得耳目一新呢。对比Junit的测试，Spock的测试用例，我们只要看一下函数的名字，
 就可以知道这个测试是用来测试什么类的了。
@@ -37,13 +37,13 @@ Spock，甚至用Spock来代替Junit呢？（其实这个问题我也疑惑过�
 让我们继续看下去，我们再写一个乘法的类，然后人为地加入一个Bug，再看看Junit和
 Spock的表现
 
-![](resources/Multiplier.png)
+![](../Build/resources/Multiplier.png)
 
 我们这次要测试Fail,看看会出现什么情况
 
-![](resources/JunitFailure.png)
+![](../Build/resources/JunitFailure.png)
 
-![](resources/spock_fail.png)
+![](../Build/resources/spock_fail.png)
 
 很明显，可以看出Junit是只是显示了结果不等，但是我们还是没办法判断，是加法还是乘
 法出了问题，但是Spock就很清晰地给出了我们想要的答案。可以看出Spock的语法更加简
@@ -99,7 +99,7 @@ def cleanupSpec() {}   // run after the last feature method
 
 为了更好地理解 Spock的特性，引用我们更熟悉的Junit来进行比较，(图截自官网)
 
-![](resources/compareToJunit.png)
+![](../Build/resources/compareToJunit.png)
 
 接下来，我们就要介绍Spock最与众不同的特性了
 
@@ -107,7 +107,7 @@ def cleanupSpec() {}   // run after the last feature method
 引用官网的一段话
 >Spock has built-in support for implementing each of the conceptual phases of a feature method. To this end, feature methods are structured into so-called blocks. Blocks start with a label, and extend to the beginning of the next block, or the end of the method. There are six kinds of blocks: setup, when, then, expect, cleanup, and where blocks
 
-![](resources/map.png)
+![](../Build/resources/map.png)
 
 下面就了解一下不同Block的功能
 
@@ -135,7 +135,7 @@ then:block包含隐式的断言，补充一下，Spock是没有 assert这个断�
 先来假设一下需求吧。假设现在要测试一个通过网站来销售电脑的电商平台，如下图(图截
 自 java_test_with_spock 一书)
 
-![](resources/shop.png)
+![](../Build/resources/shop.png)
 
 我们通过模拟用户添加商品到购物车，来展示Spock的用法
 ```java
@@ -201,7 +201,7 @@ def "A basket with one product has equal weight"(){
 从上面的代码我们可以看到，given和and都是用来初始化类，只是将根据Basket和Product
 类型进行了细分。如下图
 
-![](resources/and.png)
+![](../Build/resources/and.png)
 
 使用and block可以让我们的代码结构更加优美易懂。如果and是紧跟在when后面，那么and
 就是被赋予了when block的功能，如此类推
@@ -269,7 +269,7 @@ Java_test_with_spock一书），现在有一个核反应堆，这个反应堆的
 * 通知操作员关闭反应堆(输出)
 系统如图
 
-![](resources/nuclear.png)
+![](../Build/resources/nuclear.png)
 
 现在再来说说相关的要求吧
 * 如果压力值超过150，报警器报警
@@ -277,7 +277,7 @@ Java_test_with_spock一书），现在有一个核反应堆，这个反应堆的
 * 如果辐射值超过100，警报器报警，通知操作员关闭反应堆，并马上疏散人群
 输入输出对应关系
 
-![](resources/input_output.png)
+![](../Build/resources/input_output.png)
 
 现在，假如我们用Junit来写测试用例(代码可能有点多)
 ```java
