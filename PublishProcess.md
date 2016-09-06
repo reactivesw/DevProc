@@ -45,10 +45,11 @@ after_script:
 
 `after_script`  push the docker image to our docker hub.
 
-`after_success` trigger the codecov to check our code coverage, and out a detail report.` 76aa4e85-79ee-4528-8161-b0120af54a59` this is the project token on codecov.io
+`after_success` trigger the codecov to check our code coverage, and output a detail report.
+` 76aa4e85-79ee-4528-8161-b0120af54a59`  is the project token on codecov.io
 
 #### codecov
-Add file `codecov.yml` to the root of your project. and add content:
+Add file `codecov.yml` to the root of your project and add content:
 ```
 codecov:
   notify:
@@ -79,7 +80,7 @@ comment:
 
 ```
 
-You can change the content for special reasons.
+You can change the content for some special reasons.
 
 Still we should add `bash <(curl -s https://codecov.io/bash) -t 76aa4e85-79ee-4528-8161-b0120af54a59` to `.travis.yml`, so that we can trigger codecov in travis
 
