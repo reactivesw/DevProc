@@ -10,9 +10,11 @@
   <rule ref="code_analyze_and_test/config/pmd/rulesets/clone.xml"></rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/comments.xml"></rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/controversial.xml">
+    <!-- sometimes conflict with rule of UnnecessaryConstructor -->
     <exclude name="AtLeastOneConstructor" />
   </rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/coupling.xml">
+  <!-- to suppress warnings-->
     <exclude name="LoosePackageCoupling" />
   </rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/design.xml">
@@ -30,6 +32,7 @@
   <rule ref="code_analyze_and_test/config/pmd/rulesets/migrating.xml"></rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/naming.xml"></rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/optimizations.xml">
+  <!-- too many final -->
     <exclude name="MethodArgumentCouldBeFinal"></exclude>
   </rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/strictexception.xml"></rule>
