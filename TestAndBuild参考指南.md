@@ -24,6 +24,7 @@ dependencies {
   testCompile('org.spockframework:spock-spring:1.0-groovy-2.4')
 }
 ```
+
 3. 在project目录下建立test目录`src/test/groovy`。
 
 4. 在test目录下建立与java文件对应的groovy测试用例。  
@@ -73,6 +74,9 @@ def "sample test" () {
 }
 ```
 spock还提供了notThrown()的方式。
+
+#### 测试脏数据清除
+Test过程中可能会产生数据库数据或者文件，需要在测试末进行清除回收。
 
 ## Local Build
 
