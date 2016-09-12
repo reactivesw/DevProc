@@ -12,10 +12,12 @@
   <rule ref="code_analyze_and_test/config/pmd/rulesets/controversial.xml">
     <!-- sometimes conflict with rule of UnnecessaryConstructor -->
     <exclude name="AtLeastOneConstructor" />
+    <exclude name="DataflowAnomalyAnalysis" />
   </rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/coupling.xml">
-  <!-- to suppress warnings-->
+    <!-- to suppress warnings -->
     <exclude name="LoosePackageCoupling" />
+    <exclude name="LawOfDemeter" />
   </rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/design.xml">
   </rule>
@@ -32,7 +34,7 @@
   <rule ref="code_analyze_and_test/config/pmd/rulesets/migrating.xml"></rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/naming.xml"></rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/optimizations.xml">
-  <!-- too many final -->
+    <!-- too many final -->
     <exclude name="MethodArgumentCouldBeFinal"></exclude>
   </rule>
   <rule ref="code_analyze_and_test/config/pmd/rulesets/strictexception.xml"></rule>

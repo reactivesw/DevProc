@@ -20,7 +20,7 @@ Fields, local variables, or parameter names that are very short are not helpful 
     </description>
     <priority>3</priority>
       <properties>
-          <property name="minimum" type="Integer" value="3" min="1" max="100" description="Number of characters that are required as a minimum for a variable name."/>
+          <property name="minimum" type="Integer" value="2" min="1" max="100" description="Number of characters that are required as a minimum for a variable name."/>
           <property name="xpath">
               <value>
                   <![CDATA[
@@ -537,7 +537,7 @@ Short Classnames with fewer than e.g. five characters are not recommended.
         </description>
         <priority>4</priority>
           <properties>
-              <property name="minimum" type="Integer" value="5" min="1" max="100" description="Number of characters that are required as a minimum for a class name."/>
+              <property name="minimum" type="Integer" value="3" min="1" max="100" description="Number of characters that are required as a minimum for a class name."/>
               <property name="xpath">
                   <value>
                       <![CDATA[
