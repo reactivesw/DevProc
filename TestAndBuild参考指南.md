@@ -11,9 +11,9 @@ Test和build主要包括以下几个部分：
 
 ### Spock and Groovy Setup
 
-1. 在IDE中安装spock和groovy插件
+* 1) 在IDE中安装spock和groovy插件
 
-2. 在`build.gradle`文件中加入
+* 2) 在`build.gradle`文件中加入
 ```
 apply plugin: 'groovy'
 ```
@@ -25,9 +25,9 @@ dependencies {
 }
 ```
 
-3. 在project目录下建立test目录`src/test/groovy`。
+* 3) 在project目录下建立test目录`src/test/groovy`。
 
-4. 在test目录下建立与java文件对应的groovy测试用例。  
+* 4) 在test目录下建立与java文件对应的groovy测试用例。  
 test文件的package尽量与java文件的package一致。
 
 > **IDE中spock和groovy版本与gradle版本兼容性的问题：**  
@@ -75,8 +75,8 @@ def "sample test" () {
 ```
 spock还提供了notThrown()的方式。
 
-#### 测试脏数据清除
-Test过程中可能会产生数据库数据或者文件，需要在测试末进行清除回收。
+#### 测试数据的问题
+Test过程中可能需要读写数据库等数据操作，为了避免影响生产环境，防止脏数据的产生，所有的数据操作都需要通过Mock来进行测试，而不是直接连接Database。
 
 ## Local Build
 
@@ -90,9 +90,9 @@ Test过程中可能会产生数据库数据或者文件，需要在测试末进�
 
 ### Unit test and code coverage
 
-1. 依照Test为project创建各个unit test。
+* 1) 依照Test为project创建各个unit test。
 
-2. 在`build.gradle`中加入
+* 2) 在`build.gradle`中加入
 ```
 apply plugin: "com.palantir.jacoco-coverage"
 ```
@@ -117,9 +117,9 @@ jacocoCoverage { fileThreshold 0.8 }
 
 ### Check Style
 
-1. 在IDE中导入code style文件：`Preferences... > Java > Code Style > Formatter`。我们选用的是google
+* 1) 在IDE中导入code style文件：`Preferences... > Java > Code Style > Formatter`。我们选用的是google
 
-2. 按照规范组织Import的顺序：`Preferences... > Java > Code Style > Organize Imports`。import顺序为：
+* 2) 按照规范组织Import的顺序：`Preferences... > Java > Code Style > Organize Imports`。import顺序为：
 ```
 com
 io
@@ -128,9 +128,9 @@ java
 javax
 ```
 
-3. 每次保存java文件的时候执行formatter：`右键 > Source > Format`，快捷键`Shift+Command+F`。
+* 3) 每次保存java文件的时候执行formatter：`右键 > Source > Format`，快捷键`Shift+Command+F`。
 
-4. 在`build.gradle`文件中添加
+* 4)在`build.gradle`文件中添加
 ```
 apply plugin: "checkstyle"
 ```
@@ -153,7 +153,7 @@ checkstyleMain.exclude 'io/reactivesw/shoppingcart/grpc/*'
 
 ### Findbugs
 
-1. 在`build.gradle`文件中添加
+* 1) 在`build.gradle`文件中添加
 ```
 apply plugin: "pmd"
 ```
@@ -177,7 +177,7 @@ tasks.withType(FindBugs) {
   }
 }
 ```
-2. 不需要检测的目录设置如
+不需要检测的目录设置如
 ```
 classes = classes.filter {
   !it.path.contains('io/reactivesw/shoppingcart/grpc/')
@@ -185,13 +185,13 @@ classes = classes.filter {
 ```
 > `!it.path.contains`表示不包括的路径，经试验发现仅支持具体路径，不支持模糊匹配。需要模糊匹配，可以使用exclude或者excludeFilter。
 
-3. 检查结果可以查看`build/reports/findbugs/findbugs.html`。
+* 2) 检查结果可以查看`build/reports/findbugs/findbugs.html`。
 
 > 这部分gradle文件在`code_analyze_and_test`已经集成，我们只用根据project需要在`code_analyzer.gradle`文件中修改exclude部分就可以了。
 
 ### PMD
 
-1. 定义PMD规则。  
+* 1) 定义PMD规则。  
 `code_analyze_and_test/config/pmd/rulesets`路径下包括了所有PMD规范，`code_analyze_and_test/config/pmd/ruleset.xml`文件则定义了project执行PMD检测时对各个规范的设置。有不需要的规范，可以在`ruleset.xml`文件中找到对应的项，然后加上exclude。如：
 ```
 <rule ref="code_analyze_and_test/config/pmd/rulesets/controversial.xml">
@@ -199,7 +199,7 @@ classes = classes.filter {
 </rule>
 ```
 
-2. 在`build.gradle`文件中添加
+* 2) 在`build.gradle`文件中添加
 ```
 apply plugin: "pmd"
 ```
@@ -215,13 +215,12 @@ tasks.withType(Pmd) {
   exclude 'io/reactivesw/shoppingcart/grpc/*'
 }
 ```
-
-3. 不需要检测的文件或者目录设置，如
+不需要检测的文件或者目录设置，如
 ```
 exclude 'io/reactivesw/shoppingcart/grpc/*'
 ```
 
-4. 检测报告可查看`build/reports/pmd/main.html`。
+* 3) 检测报告可查看`build/reports/pmd/main.html`。
 
 > 这部分gradle文件在`code_analyze_and_test`已经集成，我们只用根据project需要在`code_analyzer.gradle`文件中修改exclude部分就可以了。
 
@@ -229,9 +228,9 @@ exclude 'io/reactivesw/shoppingcart/grpc/*'
 
 这部分集成了unit test，code coverage，check style，findbugs和pmd检测。
 
-1. 将`DevProc/code_analyze_and_test`文件目录拷贝到project根目录。
+* 1) 将`DevProc/code_analyze_and_test`文件目录拷贝到project根目录。
 
-2. 在roproject的builld.gradle文件中引入
+* 2) 在project的builld.gradle文件中引入
 ```
 apply from: 'code_analyze_and_test/code_unit_test.gradle'
 apply from: 'code_analyze_and_test/code_analyzer.gradle'
@@ -247,12 +246,86 @@ buildscript {
 }
 ```
 
-3. 修改文件`code_analyze_and_test/code_unit_test.gradle`和`code_analyze_and_test/code_analyzer.gradle`，exclude掉不需要检测的文件和目录。
+* 3) 修改文件`code_analyze_and_test/code_unit_test.gradle`和`code_analyze_and_test/code_analyzer.gradle`，exclude掉不需要检测的文件和目录。
 
-4. `gradle clean build`，并根据build结果和report报告对project进行规范和优化。
+* 4) `gradle clean build`，并根据build结果和report报告对project进行规范和优化。
 
 ## Remote Build
-TBD
+
+### Github
+
+上传project到github上。
+application properties设置尽量使用sample数据。
+*＊注意：一定要整理好project中的隐私数据，避免将敏感数据暴露在外。＊*
+
+### Travis
+
+* 1) 在project根目录下创建`.travis.yml`文件
+```
+sudo: required
+language: java
+jdk: oraclejdk8
+
+services:
+  - docker
+script:
+  - gradle clean
+  - gradle wrapper
+  - ./gradlew build buildDocker --info
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 76aa4e85-79ee-4528-8161-b0120af54a59
+
+
+after_script:
+  - docker login --username="" --password="";
+    docker push go6d/customer_authentication;
+```
+
+* 2) 在project根目录下创建`codecov.yml`文件
+```
+codecov:
+  notify:
+    require_ci_to_pass: yes
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+  status:
+    project: yes
+    patch: yes
+    changes: no
+
+  parsers:
+     gcov:
+       branch_detection:
+         conditional: yes
+         loop: yes
+         method: no
+         macro: no
+
+comment:
+  layout: "header, diff"
+  behavior: default
+  require_changes: no
+```
+
+* 3) 将project更新push到github上。
+ > 由于travis－ci的同步是由github的commit-push触发，所以如果project完全提交后才开启同步开关的话，可能会出现travis-ci的repository并没有拉取的情况。建议在同步开关开启后，再进行最后一次commit。
+
+* 4) 登录`https://travis-ci.org/`，打开project同步开关。
+ - 用github账户登录，然后可以看到所有的repository列表
+ - 点“＋”号后，可以看到同步提示
+ - 选择左侧organization，按照提示，找到需要同步的project打开同步开关
+ - 如果你的repository同步开关已经开启，可以忽略这步操作
+ > 只有在同步开关开启，且github上的project根目录下同时存在`.travis.yml`和`codecov.yml`文件时，travis－ci才会自动从github上同步拉取project并build。
+
+* 5) gradle wrapper
+ 由于travis-ci的版本兼容性问题，本地build成功可能push上去后build会失败。  
+ 我们需要在本地执行`gradle wrapper`后将project根目录下的gradle路径下的文件同样上传到github。
+ > 上传的时候需要把`gradle/wrapper/`下的jar文件上传，如果你的project下的`.gitignore`文件中屏蔽了jar文件的话，可以在本地暂时放开jar限制然后上传。
 
 ## Publish and Process
 TBD
