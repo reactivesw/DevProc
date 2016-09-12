@@ -36,7 +36,7 @@ after_success:
 
 
 after_script:
-  - docker login --username="go6d" --password="GO6Dloveu999";
+  - docker login --username="" --password="";
     docker push go6d/customer_authentication;
 
 ```
