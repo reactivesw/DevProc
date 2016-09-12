@@ -254,9 +254,9 @@ buildscript {
 
 ### Github
 
-上传project到github上。
-application properties设置尽量使用sample数据。
-*＊注意：一定要整理好project中的隐私数据，避免将敏感数据暴露在外。＊*
+上传project到github上。  
+application properties设置尽量使用sample数据。  
+**注意：一定要整理好project中的隐私数据，避免将敏感数据暴露在外。**
 
 ### Travis
 
