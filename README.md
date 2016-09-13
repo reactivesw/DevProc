@@ -15,3 +15,12 @@ The tool we use to analyze our code locally.
 ### workflow
 our work flow for develop.
 
+### how to use this project
+add the project as a submodule, so that you can keep your resources up to date
+
+`git submodule add https://github.com/reactivesw/DevProc.git`
+
+use the fellow command to update the submodule
+
+`git submodule foreach git pull`
+
