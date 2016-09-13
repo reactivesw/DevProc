@@ -1,7 +1,7 @@
 ## Resources for development
 
 ### GitProcess
-Here we define our base process when we work with github
+Here we define our base process when we work with github.
 
 ### Guides
 Here you can find some guids for set up develop environments or build environments
