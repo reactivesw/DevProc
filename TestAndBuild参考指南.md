@@ -228,7 +228,28 @@ exclude 'io/reactivesw/shoppingcart/grpc/*'
 
 这部分集成了unit test，code coverage，check style，findbugs和pmd检测。
 
-* 1) 将`DevProc/code_analyze_and_test`文件目录拷贝到project根目录。
+* 1) 拉取远程code_analyzer仓库作为本地仓库的submodule
+在本地project仓库下执行
+```
+git submodule add https://github.com/reactivesw/code_analyzer.git
+```
+习惯用ssh的可以用
+```
+git submodule add git@github.com:reactivesw/code_analyzer.git
+```
+这样在project路径下会出现文件`.gitmodules`和`code_analyzer`，提交project文件的时候，把生成的这两个文件一起push上去
+> 每个project下的`code_unit_test.gradle`和`code_analyzer.gradle`可能需要进行特殊设置（比如每个project需要exclude的文件是不一样的），这时候我们要先在code_analyzer下面创建project对应的branch（如`customer_authentication`），然后在project下面的`.gitmodules`文件中加上分支属性
+```
+branch = customer_authentication
+```
+修改后，`.gitmodules`文件如下
+```
+[submodule "code_analyzer"]
+	path = code_analyzer
+	url = https://github.com/reactivesw/code_analyzer.git
+	branch = customer_authentication
+```
+先在code_analyzer里把分支上修改的`code_unit_test.gradle`和`code_analyzer.gradle`文件commit然后push上去（**注意一定是push到远程仓库project对应的分支上，否则会影响其他project**），push上去之后可以看到project下的`code_analyzer`文件发生了改变，再在project下把`code_analyzer`文件commit并push上去。
 
 * 2) 在project的builld.gradle文件中引入
 ```
@@ -322,10 +343,14 @@ comment:
  - 如果你的repository同步开关已经开启，可以忽略这步操作
  > 只有在同步开关开启，且github上的project根目录下同时存在`.travis.yml`和`codecov.yml`文件时，travis－ci才会自动从github上同步拉取project并build。
 
-* 5) gradle wrapper
+* 5) gradle wrapper  
  由于travis-ci的版本兼容性问题，本地build成功可能push上去后build会失败。  
  我们需要在本地执行`gradle wrapper`后将project根目录下的gradle路径下的文件同样上传到github。
  > 上传的时候需要把`gradle/wrapper/`下的jar文件上传，如果你的project下的`.gitignore`文件中屏蔽了jar文件的话，可以在本地暂时放开jar限制然后上传。
+
+* 6) 添加build标签图片  
+ 同步到travis-ci进行build后，在页面上可以看到build结果的图标，点击图标会弹出图片地址的对话框。  
+ 把图片地址复制下来，编辑到project的`README.md`里。
 
 ## Publish and Process
 TBD
