@@ -155,7 +155,7 @@ checkstyleMain.exclude 'io/reactivesw/shoppingcart/grpc/*'
 
 * 1) 在`build.gradle`文件中添加
 ```
-apply plugin: "pmd"
+apply plugin: "findbugs"
 ```
 并加入设置
 ```
