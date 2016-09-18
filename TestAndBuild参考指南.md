@@ -51,6 +51,7 @@ Specification是spock test的基类（抽象类），所有的test都需要继�
 class SampleServiceTest extends Specification {
 }
 ```
+**由于test的时候不能对数据库操作（使用Mock），以及远程build的时候无法连接数据库，所以有数据库连接及mock测试的时候不能使用boot。**
 
 #### 异常分支测试
 spock test可以测试异常分支，可以通过thrown()方法捕获并判断异常信息。
