@@ -1,8 +1,8 @@
 # GitHub Workflow
 
-## Setup
+## 1. Setup
 
-### 1. Username and Email
+### 1.1. Username and Email
 Ensure that Git is setup to use your email address in the ~/.gitconfig file. You can do this from the command line:
 
 ```sh
@@ -12,7 +12,7 @@ git config --global user.email "your_email@mail.com”
 
 Likewise, in your GitHub account email settings, add your email. This step ensures that Git commits you make directly on GitHub.com (such as quick documentation fixes) and merges made via the ‘big green button’ have proper authorship metadata.
 
-### 2. Bash Prompt and Auto-completion
+### 1.2. Bash Prompt and Auto-completion
 Run the following to create `~/.git-completion.bash` and `~/.git-prompt.sh`:
 
 ```sh
@@ -37,7 +37,7 @@ export PS1
 ```
 This will display the branch name next to the folder name in the bash prompt.
 
-## Basic Workflow
+## 2. Basic Workflow
 
 Each service has a repository that can be built, tested, released and deployed independently. For each repository, we use the following workflow: 
 
@@ -52,7 +52,7 @@ Each service has a repository that can be built, tested, released and deployed i
 
 Youtube https://youtu.be/oFYyTZwMyAg has a short tutorial for pull, reveiw and merge. 
 
-## Code Review
+## 3. Code Review
 We review work before it is merged to ensure that code is maintainable and usable by someone other than the author.
 * Is the code well commented, structured for clarity, and consistent with DM’s code style?
 * Is there adequate unit test coverage for the code?
