@@ -22,7 +22,7 @@ io.reactivesw.mymicroservice -->
             
                 User
                 
-        servie -->
+        service -->
         
     infrastructure -->
     
