@@ -47,6 +47,7 @@ Thumbs.db
 ################
 .gradle
 .m2
+!gradle-wrapper.jar
 
 # Build output directies
 /target
