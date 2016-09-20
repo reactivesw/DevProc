@@ -1,6 +1,6 @@
 # Git Ignore Content for Java Projects
 
-Please copy the following content for a Java project. The content is copied from https://github.com/Netflix/eureka/blob/master/.gitignore. 
+Please copy the following content for a Java project. The content is copied from https://github.com/Netflix/eureka/blob/master/.gitignore and https://github.com/github/gitignore/blob/master/Java.gitignore
 
 ```sh
 # Compiled source #
@@ -20,10 +20,12 @@ Please copy the following content for a Java project. The content is copied from
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 *.zip
+*.jar
+*.war
+*.ear
 
 # Logs and databases #
 ######################
@@ -74,5 +76,11 @@ atlassian-ide-plugin.xml
 
 # NetBeans specific files/directories
 .nbattrs
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
 ```
