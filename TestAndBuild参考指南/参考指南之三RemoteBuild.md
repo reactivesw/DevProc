@@ -78,3 +78,8 @@ comment:
 * 6) 添加build标签图片  
  同步到travis-ci进行build后，在页面上可以看到build结果的图标，点击图标会弹出图片地址的对话框。  
  把图片地址复制下来，编辑到project的`README.md`里。
+
+## Codecov
+
+登录`https://codecov.io/gh`，进入project设置。  
+从Badge里复制code coverage图标地址，编辑到project的`README.md`里（放在travis图标后面）。
