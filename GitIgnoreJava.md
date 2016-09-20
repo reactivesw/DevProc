@@ -58,9 +58,6 @@ Thumbs.db
 */bin
 classes
 
-#
-# # IntelliJ specific files/directories
-
 # IntelliJ specific files/directories
 out
 .idea
