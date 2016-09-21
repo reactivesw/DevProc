@@ -29,8 +29,19 @@ task wrapper(type: Wrapper) {
 
 * edit `build.gradle` file to fit the projeect needs. 
 * if has documents, create a `documents` folder.
-* commit and push changes.
+* commit and push changes for this initial project structure.
 
+## 3. Code Analyze and Test
 
+Google Java style file should be imported into the Java IDE because check style uses Google Java style. 
 
+Create `src/test/groovy` folder and put all tests there. Make all test file packages same as their Java packages. 
+
+Following the instructions in code analyzer and test repository to configure build system to run code analyzer and unit test. 
+
+## 4. Logging
+
+## 5. gRPC 
+
+## 6. Cloud Native
 
