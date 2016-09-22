@@ -14,21 +14,8 @@
 * edit .gitignore file with content from https://github.com/reactivesw/development_process/blob/master/GitIgnoreJava.md.
 * run `gradle init --type basic` to initialize basic project structure.
 * delete `settings.gradle` file if it doesn't have sub-projects. 
-* edit `build.gradle` to set Java version and gradle wrapper version. 
-```
-compileJava {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-// Specify the gradle wrapper version
-task wrapper(type: Wrapper) { 
-    gradleVersion = '3.1' 
-}
-```
-
 * edit `build.gradle` file to fit the projeect needs. 
-* if has documents, create a `documents` folder.
+* if the project has documents, create a `documents` folder.
 * commit and push changes for this initial project structure.
 
 ## 3. Code Analyze and Test
@@ -37,7 +24,7 @@ Google Java style file should be imported into the Java IDE because check style 
 
 Create `src/test/groovy` folder and put all tests there. Make all test file packages same as their Java packages. 
 
-Following the instructions in code analyzer and test repository to configure build system to run code analyzer and unit test. 
+Following the instructions in https://github.com/reactivesw/code_analyzer_test repository to configure build system to run code analyzer and unit test. 
 
 ## 4. Logging
 
