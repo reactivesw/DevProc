@@ -4,6 +4,8 @@
 We use [Google Java Style](https://google.github.io/styleguide/javaguide.html) published on March 21, 2014. It has a [Chinese version](http://blog.mosil.biz/2014/05/java-style-guide/).
 
 ## 2. IDE Settings
+**TODO**: the current official IntellJ style setting file doesn't work, we copied a correct bug-fixed version file: `resources\intellij-google-style.xml`. Please use this file untill Google fixes the office edition. 
+
 There are sytle settings for [IntelliJ](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml) and [Eclipse](https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml).
 
 ## 3. Style checking
