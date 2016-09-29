@@ -1,14 +1,114 @@
 # Test and Build 参考指南之二 Local Build
 
-这部分基本上已经在code_analyze_and_test中集成，我们只需要在`build.gradle`文件引入，然后根据情况修改其中的设置就可以了，project检测可直接参考Code analyze and test部分。
+这部分基本上已经在code_analyzer_test中集成，我们只需要直接参考第一部分Code analyzer and test，后面为各个部分的详细说明。
 主要包括以下几个部分：
+* Code analyzer and test
 * Unit test and code coverage
 * Check Style
 * Findbugs
 * PMD
-* Code analyze and test
 
-## Unit test and code coverage
+## 1. Code analyzer and test
+
+这部分集成了unit test，code coverage，check style，findbugs和pmd检测。
+
+* 1) 拉取远程code_analyzer_test仓库作为本地仓库的submodule
+在本地project仓库下执行
+```
+git submodule add https://github.com/reactivesw/code_analyzer_test.git
+git submodule update --init --recursive
+```
+习惯用ssh的可以用
+```
+git submodule add git@github.com:reactivesw/code_analyzer_test.git
+git submodule update --init --recursive
+```
+这样在project路径下会出现文件`.gitmodules`和`code_analyzer_test`，提交project文件的时候，把生成的这两个文件一起push上去
+> code_analyzer_test为公共文件，不需要修改。 git和submodle流程可以参考[git_workflow.md](https://github.com/reactivesw/development_process/blob/master/git_workflow.md)
+
+* 2) 在project根目录下新建文件夹`code_analyzer_test_local`。
+新建文件`code_analyzer.gradle`，文件内容根据project情况修改exclude:
+```
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
+// apply all configurations
+apply from:'code_analyzer_test/code_analyzer_config.gradle'
+
+ext {
+    application_java = 'io/reactivesw/customerweb/Application.java'
+}
+
+/*************checkstyle(use google java style)***************/
+checkstyle{
+    //exclude the package you do not want to check
+}
+
+/*************PMD(Project Manager Design)***************/
+tasks.withType(Pmd) {
+    //exclude the package you do not want to check
+    exclude application_java
+}
+
+/*************find bug***************/
+tasks.withType(FindBugs) {
+    //exclude the package you do not want to check
+    // findBugs doesn't work if the filter is empty. Comment all if nothing to exclude
+    // classes = classes.filter {
+    //     !it.path.contains(grcp_folder)
+    // }
+}
+```
+新建文件`code_test_coverage.gradle`，文件内容根据project情况修改exclude:
+```
+// for spock unit test
+apply plugin: 'groovy'
+dependencies {
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('org.spockframework:spock-spring')
+}
+
+// for code coverage
+apply plugin: 'com.palantir.jacoco-coverage'
+apply from:'code_analyzer_test/test_coverage_config.gradle'
+
+// config of coverage check
+// see document: https://github.com/palantir/gradle-jacoco-coverage
+jacocoCoverage {
+  // Scopes can be exempt from all coverage requirements by exact scope name or scope name pattern.
+  fileThreshold 0.0, "Application.java"
+  //    packageThreshold 0.0, "org/company/module"
+  //    fileThreshold 0.0, ~".*Test.java"
+}
+
+//exclude the folders we do not want to check
+jacocoTestReport {
+  afterEvaluate {
+    classDirectories = files(classDirectories.files.collect {
+      fileTree(dir: it, exclude: [
+        'io/reactivesw/customerauthentication/grpc/*'
+      ])
+    })
+  }
+}
+```
+
+* 3) 在project的builld.gradle文件中引入
+在`buildscript`的`dependencies`中添加:
+```
+classpath('com.palantir:jacoco-coverage:0.4.0')
+```
+并在文件的最后引入gradle文件:
+```
+// these two files are for code analyzer, unit test and code coverage check
+apply from: 'code_analyzer_test_local/code_analyzer.gradle'
+apply from: 'code_analyzer_test_local/code_test_coverage.gradle'
+```
+
+* 4) `gradle clean build`，并根据build结果和report报告对project进行规范和优化。
+
+## 2. Unit test and code coverage
 
 * 1) 依照Test为project创建各个unit test。
 
@@ -35,7 +135,7 @@ jacocoCoverage { fileThreshold 0.8 }
 ```
 > 这部分gradle文件在`code_analyze_and_test`已经集成，我们只用根据project需要在`code_unit_test.gradle`进行修改。
 
-## Check Style
+## 3. Check Style
 
 * 1) 在IDE中导入code style文件：`Preferences... > Java > Code Style > Formatter`。我们选用的是google
 
@@ -71,7 +171,7 @@ checkstyleMain.exclude 'io/reactivesw/shoppingcart/grpc/*'
 ```
 > 这部分gradle文件在`code_analyze_and_test`已经集成，我们只用根据project需要在`code_analyzer.gradle`文件中修改exclude部分就可以了。
 
-## Findbugs
+## 4. Findbugs
 
 * 1) 在`build.gradle`文件中添加
 ```
@@ -103,13 +203,13 @@ classes = classes.filter {
   !it.path.contains('io/reactivesw/shoppingcart/grpc/')
 }
 ```
-> `!it.path.contains`表示不包括的路径，经试验发现仅支持具体路径，不支持模糊匹配。需要模糊匹配，可以使用exclude或者excludeFilter。
+> `!it.path.contains`表示不包括的路径，经试验发现仅支持具体路径，不支持模糊匹配。需要模糊匹配，可以使用exclude或者excludeFilter（需要定义excludeFilter.xml文件）。
 
 * 2) 检查结果可以查看`build/reports/findbugs/findbugs.html`。
 
 > 这部分gradle文件在`code_analyze_and_test`已经集成，我们只用根据project需要在`code_analyzer.gradle`文件中修改exclude部分就可以了。
 
-## PMD
+## 5. PMD
 
 * 1) 定义PMD规则。  
 `code_analyze_and_test/config/pmd/rulesets`路径下包括了所有PMD规范，`code_analyze_and_test/config/pmd/ruleset.xml`文件则定义了project执行PMD检测时对各个规范的设置。有不需要的规范，可以在`ruleset.xml`文件中找到对应的项，然后加上exclude。如：
@@ -143,50 +243,3 @@ exclude 'io/reactivesw/shoppingcart/grpc/*'
 * 3) 检测报告可查看`build/reports/pmd/main.html`。
 
 > 这部分gradle文件在`code_analyze_and_test`已经集成，我们只用根据project需要在`code_analyzer.gradle`文件中修改exclude部分就可以了。
-
-## Code analyze and test
-
-这部分集成了unit test，code coverage，check style，findbugs和pmd检测。
-
-* 1) 拉取远程code_analyzer仓库作为本地仓库的submodule
-在本地project仓库下执行
-```
-git submodule add https://github.com/reactivesw/code_analyzer.git
-```
-习惯用ssh的可以用
-```
-git submodule add git@github.com:reactivesw/code_analyzer.git
-```
-这样在project路径下会出现文件`.gitmodules`和`code_analyzer`，提交project文件的时候，把生成的这两个文件一起push上去
-> 每个project下的`code_unit_test.gradle`和`code_analyzer.gradle`可能需要进行特殊设置（比如每个project需要exclude的文件是不一样的），这时候我们要先在code_analyzer下面创建project对应的branch（如`customer_authentication`），然后在project下面的`.gitmodules`文件中加上分支属性
-```
-branch = customer_authentication
-```
-修改后，`.gitmodules`文件如下
-```
-[submodule "code_analyzer"]
-	path = code_analyzer
-	url = https://github.com/reactivesw/code_analyzer.git
-	branch = customer_authentication
-```
-先在code_analyzer里把分支上修改的`code_unit_test.gradle`和`code_analyzer.gradle`文件commit然后push上去（**注意一定是push到远程仓库project对应的分支上，否则会影响其他project**），push上去之后可以看到project下的`code_analyzer`文件发生了改变，再在project下把`code_analyzer`文件commit并push上去。
-
-* 2) 在project的builld.gradle文件中引入
-```
-apply from: 'code_analyze_and_test/code_unit_test.gradle'
-apply from: 'code_analyze_and_test/code_analyzer.gradle'
-buildscript {
-    repositories {
-        jcenter()
-        mavenLocal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath('com.palantir:jacoco-coverage:0.4.0')
-    }
-}
-```
-
-* 3) 修改文件`code_analyze_and_test/code_unit_test.gradle`和`code_analyze_and_test/code_analyzer.gradle`，exclude掉不需要检测的文件和目录。
-
-* 4) `gradle clean build`，并根据build结果和report报告对project进行规范和优化。
