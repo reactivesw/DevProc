@@ -68,3 +68,23 @@ Pull request conversations should only happen in ‘Conversation’ and ‘Files
 Code reviews are a collaborative check-and-improve process. Reviewers do not hold absolute authority, nor can developers ignore the reviewer’s suggestions. The aim is to discuss, iterate, and improve the pull request until the work is ready to be deployed on master.
 
 If the review becomes stuck on a design decision, that aspect of the review can be elevated to seek team-wide consensus.
+
+## 4. Submodules
+### 1. To clone a project with sub modules
+Use the command `git submodule update --init --recursive`
+
+### 2. To initially add a submodule to a project  
+Use the command `git submodule add url_of_the_repository`
+
+### 3. To Remove the submodule from a project
+Use the following three commands: 
+```sh
+// Remove the submodule entry from .git/config
+git submodule deinit -f path/to/submodule
+
+// Remove the submodule directory from the superproject's .git/modules directory
+rm -rf .git/modules/path/to/submodule
+
+// Remove the entry in .gitmodules and remove the submodule directory located at path/to/submodule
+git rm -f path/to/submodule
+```
