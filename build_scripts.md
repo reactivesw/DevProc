@@ -18,7 +18,7 @@ apply from: 'application_build/version.gradle'
 apply from: 'application_build/application_build.gradle'
 
 // then grpc and others -- the order shouldn't matter after this point
-apply from: 'application_build/grpc.gradle'
+apply from: 'application_build/grpc_build.gradle'
 
 //code analyzer and test
 apply from: 'code_analyzer_test_local/code_analyzer.gradle'
@@ -81,9 +81,9 @@ version = '0.0.42'
 ```
 
 ## 4. Apply Application Build Script
-Create an `application_build/Application.gradle` file to include dependencies used in your application. 
+Create an `application_build/application_build.gradle` file to include dependencies used in your application. 
 
-When apply Spring boot plugin using command `apply plugin: 'spring-boot'`, there is no need to specify versions for all Spring boot dependencies. Such dependencies usually have a name starting with 'spring-boot', for example: `spring-boot-starter-thymeleaf`, `spring-session`, `spring-boot-starter-data-jpa`, and `spring-boot-starter-redis` etc. 
+When apply Spring boot plugin using command `apply plugin: 'spring-boot'`, there is no need to specify versions for all Spring boot dependencies. Such dependencies usually have a name starting with 'spring-boot', for example: `spring-boot-starter-thymeleaf` and `spring-session` don't need to specify version.
 
 A sample application build script is as the following: 
 
@@ -102,13 +102,14 @@ dependencies {
   // some tools used in project
   compile("org.apache.commons:commons-lang3:3.4")
   compile ("commons-validator:commons-validator:1.4.0")
+
   //email tools
   compile('com.sun.mail:javax.mail:1.5.1')
 }
 ```
 
 ## 5. Apply gRPC Build Script 
-Create an `application_build/grpc.gradle` when you use grpc in your application. Adding the `protobuf-gradle-plugin` dependency in the `buildscript` section of `build.gradle` and copying the file from [resources/build_scripts/grpc.gradle](resources/build_scripts/grpc.gradle) should be enough. 
+Create an `application_build/grpc_build.gradle` when you use grpc in your application. Adding the `protobuf-gradle-plugin` dependency in the `buildscript` section of `build.gradle` and copying the file from [resources/build_scripts/grpc_build.gradle](resources/build_scripts/grpc_build.gradle) should be enough. 
 
 ## 6. Build Docker
 Create an `application_build/docker_build.gradle` when you use grpc in your application. Adding the `gradle-docker` dependency in the `buildscript` section of `build.gradle` and copying the file from [resources/build_scripts/docker_build.gradle](resources/build_scripts/docker_build.gradle) should be enough.
@@ -158,7 +159,7 @@ apply from: 'application_build/version.gradle'
 apply from: 'application_build/application_build.gradle'
 
 //build grpc files
-apply from: 'application_build/grpc.gradle'
+apply from: 'application_build/grpc_build.gradle'
 
 // build docker image task
 apply from: 'application_build/docker_build.gradle'

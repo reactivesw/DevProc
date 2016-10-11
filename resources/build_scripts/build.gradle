@@ -10,15 +10,12 @@ buildscript {
     mavenLocal()
     mavenCentral()
     maven {
-      url "http://dl.bintray.com/robfletcher/gradle-plugins"
+      url 'http://dl.bintray.com/robfletcher/gradle-plugins'
       url 'https://repo.spring.io/libs-milestone'
     }
   }
-  
-  dependencies {
-    // for sass build
-    classpath "com.github.robfletcher:compass-gradle-plugin:2.0.5"
 
+  dependencies {
     // for spring boot
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 
@@ -30,6 +27,9 @@ buildscript {
 
     //for proto buffer
     classpath('com.google.protobuf:protobuf-gradle-plugin:0.8.0')
+
+     // for sass build
+    classpath "com.github.robfletcher:compass-gradle-plugin:2.0.5"
   }
 }
 
@@ -43,7 +43,7 @@ apply from: 'application_build/version.gradle'
 apply from: 'application_build/application_build.gradle'
 
 //build grpc files
-apply from: 'application_build/grpc.gradle'
+apply from: 'application_build/grpc_build.gradle'
 
 // sass build file
 apply from: 'application_build/sass_build.gradle'
