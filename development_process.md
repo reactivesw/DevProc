@@ -4,6 +4,7 @@ This file describes the things we do to complement an iteration of application d
 * The process should be as simple as possible, but not simpler -- Albert Einstein
 * Correctness and maitainability are top two goals, everything else follows. 
 * Documents are as important as the code in two ways: they are the most important communcation tools and their quality really matters.
+* Human is not reliable, we need human reviews and automation tools to maintain the desired level of quality.  
 
 ## 1. Development Phases
 As an open-source cloud-native application, this endeavor will be alive for a long long time. There will be many iterations in the development process. Each iteration involves the following steps:
@@ -14,7 +15,7 @@ As an open-source cloud-native application, this endeavor will be alive for a lo
 4. DevOps: we care about operation. Logging and system monitoring are two important tools that build into any code.
 5. Reflect and Refactor: we consistently do this to improve. 
 
-As a programmer, we know how important are the consistency and DRY. 
+As a programmer, we know how important are the consistency and DRY. All changes should be reviewed before applied to the production system. 
 
 ## 2. Iteration Plan and Tracking
 It is important to know the team productivity because so many things built upon it. Actaully, good planning helps. We use two level planners: team planner and individual planner. We use Trello as our planner. 
