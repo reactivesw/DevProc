@@ -13,5 +13,7 @@ compileJava {
 }
 
 // Specify the gradle wrapper version
-task wrapper(type: Wrapper) {  gradleVersion = '3.1'  }
+task wrapper(type: Wrapper) {  
+  gradleVersion = '3.1'  
+}
 
