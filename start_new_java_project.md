@@ -11,14 +11,19 @@ In GitHub web site, perform the following steps:
 ## 2. Create a Gradle Project
 In your local development folder, setup the initial project. 
 * clone the newly-created GitHub project.
-* copy `.gitignore` file from the sample [resources/.gitignore](resources/.gitignore).
+* copy the sample [resources/gitignore](resources/gitignore) as the `.gitignore` file in respository root.
 * run `gradle init --type basic` to initialize basic project structure.
 * delete `settings.gradle` file if it doesn't have sub-projects. 
 * edit `build.gradle` file to fit the projeect needs. 
 * if the project has documents, create a `documents` folder.
 * commit and push changes for this initial project structure.
 
-## 3. Build scripts
+## 3. Source Code and Test 
+Google Java style file should be imported into the Java IDE because check style uses Google Java style. 
+We recommend to follow gradle default project structure to organize source code files. 
+Create `src/test/groovy` folder and put all tests there. Make all test file packages same as their Java packages.
+
+## 4. Build scripts
 There are many things involved in the build process: dependent Java libraries, other git repositories, gRPC code generation, code style checking, unit test, code test coverage, Java code bug checking (PMD, findbug),  and Docker image etc. 
 
 We use multiple gradle build scripts to manage the build process and combine them in the root level `build.gradle` file. To set up the build scripts, please check [build_scripts.md](build_scripts.md) for details.

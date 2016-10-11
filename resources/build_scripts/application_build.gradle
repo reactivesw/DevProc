@@ -1,0 +1,22 @@
+/**
+ * Created by bruceliu on 9/22/16.
+ */
+
+// for spring boot
+apply plugin: 'spring-boot'
+
+dependencies {
+  //database
+  compile("mysql:mysql-connector-java:5.1.26")
+  compile("org.springframework.boot:spring-boot-starter-data-jpa")
+  //security, like password encoder.
+  compile('org.springframework.security:spring-security-crypto')
+  compile('org.springframework.boot:spring-boot-starter-redis')
+
+  // some tools used in project
+  compile("org.apache.commons:commons-lang3:3.4")
+  compile ("commons-validator:commons-validator:1.4.0")
+  //email tools
+  compile('com.sun.mail:javax.mail:1.5.1')
+}
+

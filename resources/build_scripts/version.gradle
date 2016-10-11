@@ -1,0 +1,5 @@
+group = 'reactivesw'
+
+// for java jar file base name
+archivesBaseName = 'customer-authentication'
+version = '0.0.11'

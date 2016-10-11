@@ -1,0 +1,35 @@
+//for protobuf
+apply plugin: 'com.google.protobuf'
+
+def grpcVersion = '1.0.0-pre2' // CURRENT_GRPC_VERSION
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/proto'
+            include '**/*.proto'
+        }
+        java { srcDir 'src/main/java' }
+        java { srcDir 'src/main/grpc' }
+    }
+}
+
+//for protobuf build
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:3.0.0" }
+    plugins { grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0' } }
+    generateProtoTasks {
+        ofSourceSet('main').each { task ->
+            task.builtins { java{ outputSubDir = 'grpc' } }
+            task.plugins { grpc { outputSubDir = 'grpc' } }
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/"
+}
+
+//grpc
+dependencies {
+    compile("io.grpc:grpc-protobuf:${grpcVersion}")
+    compile("io.grpc:grpc-stub:${grpcVersion}")
+    compile("org.lognet:grpc-spring-boot-starter:0.0.5")
+}
