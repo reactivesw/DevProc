@@ -18,10 +18,21 @@ As an open-source cloud-native application, this endeavor will be alive for a lo
 As a programmer, we know how important are the consistency and DRY. All changes should be reviewed before applied to the production system. 
 
 ## 2. Iteration Plan and Tracking
-It is important to know the team productivity because so many things built upon it. Actaully, good planning helps. We use two level planners: team planner and individual planner. We use Trello as our planner. 
+It is important to know the team productivity because so many things built upon it. Actaully, good planning helps. We use two level Kanban boards: a team board and an individual board. The team board updates weekly and individual board updates daily. 
 
-### Team Planner 
-This is an overal planner for the overall endeavor. It shows tasks to be performed in about 6 months. 
+### 2.1 Kanban Board
+We use Trello as Kanban system. All Kanban boards have the following columns: 
+* New: a new item is created.
+* Planned: an item is scheduled into working pipeline with an estimate of required time. This esitmate is not changed once it is in WIP status. The estimate is appened to the item name with a pattern of 8h or 7d -- representing 8 hours or 7 days. The position of the item is its priority. Higher position item has a higher priority to enter WIP.  
+* WIP: work in progress. Once in this column, it has two extra suffix in its name: one for actual working time and one for estimated time to fully complete it. For example: 8h-4-6 means that original estimate is 8 hours, 4 hours has spent in this item and 6 more hours are required to complete it. 
+* Review: items to be reviewed. 
+* Done: the item is done. The time suffix now only has two fields: estimate time and actual working time. For example, 8h-10 means an estimate of 8 hours and the actual working time is 10 hours.   
 
-### Individual Planner
-Each person has a planner that shows daily task items. Ideally it should be no longer than a month.     
+### 2.2 Team Planner 
+This is an overal planner for the overall endeavor. It shows tasks to be performed in about 6 months. Everyone updates the corresponding item in a weekly base. 
+
+### 2.3 Individual Planner
+Each person has a planner that shows daily task items. Ideally it should be no longer than a month. This should be updated daily.  
+
+### 2.4 Stand-up Meeting
+We have a team stand-up meeting everyday to review working status, schedule working items and raise issues. It should be short and to the point. Any issues is discussed after the stand-up meeting by its stakeholders.  
