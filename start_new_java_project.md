@@ -23,11 +23,11 @@ Google Java style file should be imported into the Java IDE because check style 
 We recommend to follow gradle default project structure to organize source code files. 
 Create `src/test/groovy` folder and put all tests there. Make all test file packages same as their Java packages.
 
-## 4. Build scripts
+## 4. Build Scripts
 There are many things involved in the build process: dependent Java libraries, other git repositories, gRPC code generation, code style checking, unit test, code test coverage, Java code bug checking (PMD, findbug),  and Docker image etc. 
 
 We use multiple gradle build scripts to manage the build process and combine them in the root level `build.gradle` file. To set up the build scripts, please check [build_scripts.md](build_scripts.md) for details.
 
-## 4. Release 
-
+## 5. Code Publish
+When a local change is pushed to Github repository,  it should trigger a sequence of test, build, check and deployment tasks. The [publish_process.md](publish_process.md) describes the configuration and steps to publish changes.  
 
