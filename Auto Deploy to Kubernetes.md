@@ -85,6 +85,7 @@ spec:
 
 ## 3. Travis Support
 In Travis CI,we can easily deploy to server by a custom script([Travis Refence](https://docs.travis-ci.com/user/deployment/script/)).
+
 1. edit `.travis.yaml`
   in `.travis.yaml`, append following script:
   ```yaml
