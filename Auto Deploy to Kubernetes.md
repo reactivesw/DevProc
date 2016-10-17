@@ -96,6 +96,7 @@ In Travis CI,we can easily deploy to server by a custom script([Travis Refence](
   on:
     all_branches: true
   ```
+  
 2. edit `deploy.sh`
   in `deploy.sh`, we need to change the path of yaml file.
   * before
