@@ -98,11 +98,14 @@ In Travis CI,we can easily deploy to server by a custom script([Travis Refence](
 2. edit `deploy.sh`
   in `deploy.sh`, we need to change the path of yaml file.
   * before
-    ```shell curl -X POST http://54.200.161.225:8080/api/v1/namespaces/default/replicationcontrollers \
+    ```shell 
+    curl -X POST http://54.200.161.225:8080/api/v1/namespaces/default/replicationcontrollers \
 	  -H "Content-Type:application/yaml" --data-binary "@cust-catalog-rc.yaml"
-	  ```
+    ```
+    
   * after
-    ```shell curl -X POST http://54.200.161.225:8080/api/v1/namespaces/default/replicationcontrollers \
+    ```shell 
+    curl -X POST http://54.200.161.225:8080/api/v1/namespaces/default/replicationcontrollers \
 	  -H "Content-Type:application/yaml" --data-binary "@./scripts/cust-catalog-rc.yaml"
-	  ```
+    ```
 	  
