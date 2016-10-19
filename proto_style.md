@@ -26,7 +26,7 @@
  }
  ```
  
-## enums
+## Enums
 Use CamelCase for enums name, use CAPITALS_WITH_UNDERSCORES for value names in it.
 for example:
 ```
@@ -35,3 +35,8 @@ enum Foo {
   SECOND_VALUE = 2;
 }
 ```
+
+## The way to organize proto
+- try to split bit proto files to small one.
+- use the shared proto if you can extract the same content, like `emptyMessage`.
+- try to split message and service to different files, if you have need to.
