@@ -15,6 +15,6 @@ for each event, we should have `description, trigger, content`
 ## 5. grpc
 ### 5.1 grpc service
 For each service, we should have `description, input, output, exception`
-### 5.1 grpc exception & domain exception
+### 5.2 grpc exception & domain exception
 give a table about the corresponding relation
 
