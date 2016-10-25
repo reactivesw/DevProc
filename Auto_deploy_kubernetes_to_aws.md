@@ -1,6 +1,6 @@
 
 # 说明
-本文介绍了如何通过本地安装的 AWSCLI 用脚本完成一键部署 kubernetes 集群。除了使用 AWSCLI安装之外
+本文介绍了如何通过本地安装的 AWSCLI 用脚本完成一键部署 kubernetes 集群。除了使用 AWSCLI安装之外，也可以先在AWS EC2上开启一个实例，然后SSH连接到该实例，类似于跳板一样，来进行安装。
 
 # 1. 前置要求
 - 已开通 AWS 帐号。
@@ -71,3 +71,9 @@ curl -sS https://get.k8s.io | bash
 kubectl config view
 ```
 来获得。
+
+# Reference
+1. http://www.tothenew.com/blog/setup-kubernetes-cluster-on-aws-ec2/
+2. https://medium.com/@canthefason/kube-up-i-know-what-you-did-on-aws-93e728d3f56a#.avnpg7zau
+3. http://ryaneschinger.com/blog/building-a-kubernetes-cluster-on-aws/
+4. http://kubernetes.io/docs/getting-started-guides/aws/
