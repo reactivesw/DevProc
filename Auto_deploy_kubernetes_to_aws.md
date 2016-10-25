@@ -49,3 +49,25 @@ export ELASTICSEARCH_LOGGING_REPLICAS=1 #
 更详细的参数介绍可以看kubernetes的github[说明文件](https://github.com/kubernetes/kubernetes/blob/master/cluster/aws/options.md)。
 
 # 3. 安装
+参数全部配置完毕后就可以开始安装。如果本地没有下载kubernetes，那么使用以下指令：
+```sh
+#Using wget
+wget -q -O - https://get.k8s.io | bash
+#Using cURL
+curl -sS https://get.k8s.io | bash
+```
+
+脚本执行将会先下载kubernetes的最新release版本，解压，然后开始执行一键部署的 kube-up.sh 脚本，最终完成整个部署。
+
+如果已经下载并解压了kubernetes在本地，那么执行kube-up.sh来进行安装：
+```sh
+./<Path To kubernetes>/cluster/kube-up.sh
+```
+
+当所有安装完成，应该可以看到“Kubernetes cluster is running”的信息显示，并且列出服务的外部访问地址。
+
+访问时使用的用户名和密码可以通过本地使用以下指令
+```sh
+kubectl config view
+```
+来获得。
