@@ -13,37 +13,27 @@
 export AWS_DEFAULT_PROFILE=myawsprofile
 ```
 
-# 2. 配置安装参数
-在运行脚本之前，需要先设置好环境变量，不然脚本会用预设值进行部署。本文使用 macOS 下本地安装的 AWSCLI，请在 terminal 中配置好参数，然后用 env 或者 export 指令查看是否正确配置。
+# 2. Configure Installation Settings
+Please check `kubernetes/cluster/aws/config-default.sh` and `kubernetes/cluster/aws/options.md` for a complete configuraiton description. 
+
 ```sh
-## 必须配置的参数：
-export KUBERNETES_PROVIDER=aws #将脚本指向cluster文件夹里的aws文件夹
-export NUM_NODES=2 #节点数，master不算在内
-export MASTER_SIZE=t2.medium #master的配置，一般建议至少选择medium以上
-export NODE_SIZE=t2.micro #node的配置，根据需要配置
-export KUBE_AWS_ZONE=us-west-2b #AWS的区域，对应us-west-2，包括a,b,c三个
-export KUBE_AWS_INSTANCE_PREFIX=k8s #名称的预设部分，大部分用到名称的参数会使用这个作为预设部分，再加上自己的后半部分命名
-export AWS_S3_REGION=us-west-2 #S3的区域设置，一般与AWS设置为同一个。P.S：不需要加a,b,c
+#!/bin/sh
+# To use AWS cluster nodes
+export KUBERNETES_PROVIDER=aws 
 
-## 可选配置的参数（等号后为脚本预设值）
-export AWS_SSH_KEY=$HOME/.ssh/id_rsa #如果想要使用已经有的SSH key，就需要用这个来制定路径。预设会创建SSH key到该路径下。
-export CLUSTER_IP_RANGE=10.244.0.0/16
-export MASTER_IP_RANGE=10.246.0.0/24
-export MASTER_DISK_TYPE=gp2 #general purpose ssd
-export MASTER_DISK_SIZE=12
-export NODE_ROOT_DISK_TYPE=gp2
-export NODE_ROOT_DISK_SIZE=8
+# change this to your unique prefix to avoid conflict with existing k8s cluster
+export INSTANCE_PREFIX=myapp 
 
+# the default VPC CIDR is 172.20.0.0/16, change this to avoid conflict with existing k8s cluster
+export KUBE_VPC_CIDR_BASE=172.27
 
-export KUBE_ENABLE_NODE_LOGGING=true #开启node logging
-export KUBE_LOGGING_DESTINATION=elasticsearch #可选elasticsearch, gcp。
-export KUBE_ENABLE_CLUSTER_LOGGING=true #设为true，则Elasticsearch和Kibana会作为cluster的一部分一起启动。
-export ELASTICSEARCH_LOGGING_REPLICAS=1 #
+# the number of nodes, not include the master. the default is 4 if not set
+export NUM_NODES=2 
+
+# We set the two to use the same region resources
+export KUBE_AWS_ZONE=us-west-2c
+export AWS_S3_REGION=us-west-2 
 ```
-
-除了以上参数，还可以配置VPC，Subnet，Security Group。不过这些参数一般建议让脚本创建，不然容易出现网络问题。同理CLUSTER_IP_RANGE，MASTER_IP_RANGE如非必要，不需要特意改动。
-
-更详细的参数介绍可以看kubernetes的github[说明文件](https://github.com/kubernetes/kubernetes/blob/master/cluster/aws/options.md)。
 
 # 3. 安装
 参数全部配置完毕后就可以开始安装。如果本地没有下载kubernetes，那么使用以下指令：
@@ -61,13 +51,27 @@ curl -sS https://get.k8s.io | bash
 ./<Path To kubernetes>/cluster/kube-up.sh
 ```
 
-当所有安装完成，应该可以看到“Kubernetes cluster is running”的信息显示，并且列出服务的外部访问地址。
+When it is done, you should see the following messages:
+```
+Cluster validation succeeded
+Done, listing cluster services:
+Kubernetes master is running at https://35.160.196.250
+Elasticsearch is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/elasticsearch-logging
+Heapster is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/heapster
+Kibana is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/kibana-logging
+KubeDNS is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/kube-dns
+kubernetes-dashboard is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard
+Grafana is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana
+InfluxDB is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-system/services/monitoring-influxdb
 
-访问时使用的用户名和密码可以通过本地使用以下指令
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+To check the cluster configuration, especially the username and password to access dashboard and Kibana, run the following command:
 ```sh
 kubectl config view
 ```
-来获得。
+
 
 # Reference
 1. http://www.tothenew.com/blog/setup-kubernetes-cluster-on-aws-ec2/
