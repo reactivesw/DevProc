@@ -74,7 +74,8 @@ kubectl config view
 
 
 # Reference
+1. https://github.com/kubernetes/kubernetes/blob/master/docs/design/aws_under_the_hood.md
 1. http://www.tothenew.com/blog/setup-kubernetes-cluster-on-aws-ec2/
-2. https://medium.com/@canthefason/kube-up-i-know-what-you-did-on-aws-93e728d3f56a#.avnpg7zau
-3. http://ryaneschinger.com/blog/building-a-kubernetes-cluster-on-aws/
-4. http://kubernetes.io/docs/getting-started-guides/aws/
+1. https://medium.com/@canthefason/kube-up-i-know-what-you-did-on-aws-93e728d3f56a#.avnpg7zau
+1. http://ryaneschinger.com/blog/building-a-kubernetes-cluster-on-aws/
+1. http://kubernetes.io/docs/getting-started-guides/aws/
