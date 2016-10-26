@@ -1,9 +1,9 @@
 # Application Logging
 This document describes the application logging configuration that enables dynamic remote logging level change using JMX. 
 
-We use logback for all application logging. 
+We use logback for all application logging. To enable JMX dynamic configuraiton, follow the instructions in step 1 and 2 to config logging in application and enable JMX in docker image.  
 
-## Logging configuration
+## 1. Logging configuration
 Create a `src/main/resources/logback-spring.xml` that has the following content: 
 
 ```xml
@@ -26,7 +26,7 @@ It configures three things:
 3. Sets root trace level to `INFO`
 
 
-## Enable JMX in Docker Image
+## 2. Enable JMX in Docker Image
 To enable remote JMX management, we need to define the following JVM options. 
 
 ```sh
@@ -39,7 +39,7 @@ To enable remote JMX management, we need to define the following JVM options.
 -Djava.rmi.server.hostname=127.0.0.1 
 ```
 
-the `port` and `rmi.port` should be the same port number.  the following build script can be used to configure docker image. 
+The `port` and `rmi.port` should be the same port number.  the following build script can be used to configure docker image.  Here we user a port number of 8081 -- it should be read from an enviornment variable in production. 
 
 ```groovy
 //the entryPoint
@@ -57,7 +57,7 @@ list.add("/app.jar")
 entryPoint(list)
 ``` 
 
-## Remote Config Loggin level
+## 3. Remote Config Logging Level
 
 First, forward a pod's JMX port ot local port `kubectl port-forward <your-app-pod> 8081`
 Then, connect to it to config log level `jconsole 127.0.0.1:8081`
