@@ -62,9 +62,18 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
 # 4. Tips
-To check the cluster configuration, especially the username and password to access dashboard and Kibana, run the command `kubectl cluster-info`. 
+To check the cluster configurations, especially the username and password to access dashboard and Kibana, run the command `kubectl config view`. 
 
-Too see all cluster info, run `kubectl config view`.  To remove entries of deleted clusters, use `kubectl config unset` to delete entries in clusters, contexts and users. For example:
+To see the current cluster info, run `kubectl cluster-info`.  
+
+To share cluster access, see http://kubernetes.io/docs/user-guide/sharing-clusters/. After run `cluster/kube-up.sh`, copy `$HOME/.kube/config` to a folder in sharing machine,  there are three options to share the access credentials: 
+* Option 1: copy to the default location: `mv /path/to/.kube/config $HOME/.kube/config`
+* Option 2: copy to working directory (from which kubectl is run): `mv /path/to/.kube/config $PWD`
+* Option 3: manually pass kubeconfig location to kubectl: via environment variable `export KUBECONFIG=/path/to/.kube/config` or via commandline flag `kubectl ... --kubeconfig=/path/to/.kube/config`. 
+
+To switch to a different cluster context, run `kubectl config set current-context {context-name}`
+
+To remove dated entries of deleted clusters by other users, use `kubectl config unset` to delete entries in clusters, contexts and users. For example:
 ```sh 
 kubectl config unset clusters:cluster-name
 kubectl config unset contexts:context-name
