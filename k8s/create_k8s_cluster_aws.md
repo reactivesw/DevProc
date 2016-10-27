@@ -11,7 +11,7 @@ Please check `kubernetes/cluster/aws/config-default.sh` and `kubernetes/cluster/
 
 After specify AWS as k8s provider, only the `INSTANCE_PREFIX` and `KUBE_VPC_CIDR_BASE` are required to be unique to avoid conflicts with existing clusters. The default configuration uses a `t2.medium` and 20GB ESB SSD disk for master,  a `t1.micro` and 32GB ESB SSD disk for a node. 
 
-If you re-create a cluster with the same settings, you should delete all existing EC2 instances and the corresponding VPC to avoide network address and name conflicts.  
+If you re-create a cluster with the same settings, you should delete all existing EC2 instances (deleting AUTO SCALING lauch configuration and autoscaling group) and the corresponding VPC to avoide network address and name conflicts.  
 
 Put the following environment variables in a script file such as `k8s_env.sh` and run `source k8s_env.sh` to set environment variables. 
 
@@ -61,9 +61,14 @@ InfluxDB is running at https://35.160.196.250/api/v1/proxy/namespaces/kube-syste
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-To check the cluster configuration, especially the username and password to access dashboard and Kibana, run the following command:
-```sh
-kubectl config view
+# 4. Tips
+To check the cluster configuration, especially the username and password to access dashboard and Kibana, run the command `kubectl cluster-info`. 
+
+Too see all cluster info, run `kubectl config view`.  To remove entries of deleted clusters, use `kubectl config unset` to delete entries in clusters, contexts and users. For example:
+```sh 
+kubectl config unset clusters:cluster-name
+kubectl config unset contexts:context-name
+kubectl config unset users:user-name  
 ```
 
 # Reference
