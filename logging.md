@@ -12,19 +12,14 @@ Create a `src/main/resources/logback-spring.xml` that has the following content:
     <jmxConfigurator />
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-
-    <logger name="root" level="INFO" additivity="false">
-        <appender-ref ref="CONSOLE" />
-    </logger>
 </configuration>
 ```
 
-It configures three things: 
-
+It configures two things: 
 1. Enables JMX remote management
 2. Uses default spring logback configuration
-3. Sets root trace level to `INFO`
 
+Then use standard YAML file to configure logger level for different configuration profiles. Check this https://springframework.guru/using-yaml-in-spring-boot-to-configure-logback/ 
 
 ## 2. Enable JMX in Docker Image
 To enable remote JMX management, we need to define the following JVM options. 
