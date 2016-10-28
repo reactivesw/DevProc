@@ -3,23 +3,41 @@ This document describes the application logging configuration that enables dynam
 
 We use logback for all application logging. To enable JMX dynamic configuraiton, follow the instructions in step 1 and 2 to config logging in application and enable JMX in docker image.  
 
-## 1. Logging configuration
+## 1. Logback configuration
+### 1.1. Enable JMX and Sets Default Configuration 
 Create a `src/main/resources/logback-spring.xml` that has the following content: 
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <jmxConfigurator />
-
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 </configuration>
 ```
-
 It configures two things: 
 1. Enables JMX remote management
-2. Uses default spring logback configuration
+2. Uses default spring logback configuration defined in `base.xml`. It specifies log message pattern and sets root logging level to "INFO".
 
-Then use standard YAML file to configure logger level for different configuration profiles. Check this https://springframework.guru/using-yaml-in-spring-boot-to-configure-logback/ 
+### 1.2. Application Log Configuration
+Use standard YAML file to configure logger for different profiles. Check this https://springframework.guru/using-yaml-in-spring-boot-to-configure-logback/. Different profiles can be configured in one `application.yml` file or in different files with names like `application-default.yml`, `application-dev.yml`, and `application-production.yml`. 
+
+The following is an example of `application.yml`. 
+```yaml
+spring:
+  profiles.active: test
+---
+spring:
+  profiles: test
+logging:
+  level:
+    io.reactivesw: DEBUG
+---
+spring:
+  profiles: production
+logging:
+  level:
+    org.springframework.web: WARN
+```
 
 ## 2. Enable JMX in Docker Image
 To enable remote JMX management, we need to define the following JVM options. 
