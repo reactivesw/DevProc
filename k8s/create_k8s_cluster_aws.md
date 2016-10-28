@@ -11,7 +11,7 @@ Please check `kubernetes/cluster/aws/config-default.sh` and `kubernetes/cluster/
 
 After specify AWS as k8s provider, only the `INSTANCE_PREFIX` and `KUBE_VPC_CIDR_BASE` are required to be unique to avoid conflicts with existing clusters. The default configuration uses a `t2.medium` and 20GB ESB SSD disk for master,  a `t1.micro` and 32GB ESB SSD disk for a node. 
 
-If you re-create a cluster with the same settings, you should delete all existing EC2 instances (deleting AUTO SCALING lauch configuration and autoscaling group) and the corresponding VPC to avoide network address and name conflicts.  
+If you re-create a cluster with the same settings, you should delete all existing EC2 instances (by deleting AUTO SCALING lauch configuration, autoscaling group for nodes and terminating the master EC2 instance) and the corresponding VPC to avoide network address and name conflicts.  
 
 Put the following environment variables in a script file such as `k8s_env.sh` and run `source k8s_env.sh` to set environment variables. 
 
