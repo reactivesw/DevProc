@@ -21,7 +21,7 @@ Put the following environment variables in a script file such as `k8s_env.sh` an
 export KUBERNETES_PROVIDER=aws 
 
 # change this to your unique prefix to avoid conflict with existing k8s cluster, the default is kubernetes. 
-export INSTANCE_PREFIX=mycluster 
+export KUBE_AWS_INSTANCE_PREFIX=mycluster 
 
 # change this to avoid conflict with existing k8s cluster, the default VPC CIDR is 172.20.0.0/16. 
 export KUBE_VPC_CIDR_BASE=172.27
