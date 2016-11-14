@@ -4,10 +4,9 @@ import App from './App'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // set the API root so we can use relative url's in our actions.
-Vue.http.options.root = `https://api.sphere.io/${process.env.PROJECT_KEY}`
-console.log('http root is ' + Vue.http.options.root)
-
-Vue.http.headers.common['Authorization'] = `Bearer ${process.env.ACCESS_TOKEN}`
+var config = require('../config')
+var port = process.env.PORT || config.dev.port
+Vue.http.options.root = `http://localhost:${port}/api`
 
 // import some global styles
 import './styles/style.scss'

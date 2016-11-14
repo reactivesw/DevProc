@@ -1,5 +1,5 @@
 # Vue Setup Sample
-This document descript the steps to scaffold a project and add more components to make it a good fit for non-trivial project. The sample project is in the [vue_ctp_sample](./vue_ctp_sample).
+Base on [Jayway's Vue.js 2.0 workshop](https://jayway.github.io/vue-js-workshop/), this document descripts the steps to scaffold a project and add more components to make it a good fit for non-trivial project. The sample project is in the [vue_sample](./vue_sample).
 
 ## 1. Scaffold a Project 
 
@@ -65,18 +65,20 @@ Second, create the `src/components/ProductList.vue` file with the following cont
 ```
 <template>
   <table class="table table-hover">
-    <thead>
+     <thead>
       <tr>
         <th>Product Id</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Price</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="product in products" track-by="id">
         <td>{{product.id}}</td>
-        <td>{{product.masterData.current.name}}</td>
-        <td>{{product.masterData.current.description}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
       </tr>
     </tbody>
   </table>
@@ -181,37 +183,61 @@ export default {
 ```
 In the above code, we map the `getProducts` getter meethod to a local computed property with a name `products`. 
 
-## 6. Set HTTP Client
+## 6. Create HTTP Server API and Set HTTP Client 
 
-### 6.1. Read Environment Variables
-Change `config/dev.env.js` as the following to read CTP project key and access token from the enviornment variables. The `ACCESS_TOKEN` should have thhe `view_products` scope.
-
+### 6.1 Create HTTP Server API
+First, create `/server/src/product-data.js` with the following code:
 ```js
-var merge = require('webpack-merge')
-var prodEnv = require('./prod.env')
+module.exports = [
+    {
+        id: '001',
+        name: 'COBOL 101 vintage',
+        description: 'Learn COBOL with this vintage programming book',
+        price: 399,
+    },
+    {
+        id: '007',
+        name: 'Sharp C2719 curved TV',
+        description: 'Watch TV like with new screen technology',
+        price: 1995,
+    },
+    {
+        id: '719',
+        name: 'Remmington X mechanical keyboard',
+        description: 'Excellent for gaming and typing',
+        price: 595,
+    }
+]
+```
 
-module.exports = merge(
-  prodEnv,
-  {
-    NODE_ENV: '"development"',
-    ACCESS_TOKEN: `'${process.env.ACCESS_TOKEN}'`,
-    PROJECT_KEY: `'${process.env.PROJECT_KEY}'`
-})
+Then, create `/server/src/get-products.js` with the following code:
+```js
+const products = require('./products-data')
 
+exports.getProducts = (req, res) => {
+  res.status(200); // 200 OK
+  res.json({data: products})
+}
+```
+
+Finally, add the server API by inserting the following two lines to `build/dev-server.js`, right after creating `var app = express()`:
+```js
+var productsApi = require('../server/src/get-products')
+app.get('/api/products', productsApi.getProducts)
 ```
 
 ### 6.2. Install `vue-resource`
-Run `npm install --save vue-resource` to install `vue-resource` that is used to make REST API requests. 
+First, run `npm install --save vue-resource` to install `vue-resource` that is used to make REST API requests. 
 
-### 6.3. Add `vue-resource` as Vue middleware
-In `src/main.js`, add the following lines: 
+Then, in `src/main.js`, add the following lines: 
 
 ```js
-import VueResource from 'vue-resource'
+mport VueResource from 'vue-resource'
 Vue.use(VueResource)
 // set the API root so we can use relative url's in our actions.
-Vue.http.options.root = `https://api.sphere.io/${process.env.PROJECT_KEY}`
-Vue.http.headers.common['Authorization'] = `Bearer ${process.env.ACCESS_TOKEN}`
+var config = require('../config')
+var port = process.env.PORT || config.dev.port
+Vue.http.options.root = `http://localhost:${port}/api`
 ```
 
 ## 7. Use Mutations and Actions
@@ -242,7 +268,7 @@ import { FETCH_PRODUCTS } from './mutation-types'
 
 export function fetchProducts ({ commit }) {
   return http.get('products/')
-    .then((response) => commit(FETCH_PRODUCTS, response.body.results))
+    .then((response) => commit(FETCH_PRODUCTS, response.body.data))
 }
 ```
 
@@ -288,8 +314,4 @@ export default {
 ```
 
 In the above code, we map the `fetchProducts` action to a local method with the same name, then call it when the component is created. 
-
-## 8. Add Router
-
-Run `npm install --save vue-router`
 

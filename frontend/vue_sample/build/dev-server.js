@@ -6,6 +6,7 @@ var express = require('express')
 var webpack = require('webpack')
 var opn = require('opn')
 var proxyMiddleware = require('http-proxy-middleware')
+
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
@@ -18,6 +19,10 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
+
+// set products API path
+var productsApi = require('../server/src/get-products')
+app.get('/api/products', productsApi.getProducts)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,

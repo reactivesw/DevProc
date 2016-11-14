@@ -5,13 +5,15 @@
         <th>Product Id</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Price</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="product in products" track-by="id">
         <td>{{product.id}}</td>
-        <td>{{product.masterData.current.name}}</td>
-        <td>{{product.masterData.current.description}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
       </tr>
     </tbody>
   </table>
