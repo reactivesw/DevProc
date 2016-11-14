@@ -38,7 +38,7 @@ io.reactivesw.mymicroservice -->
         
             UserView.html
             
-    application -->
+    application -->  // anything involving more than one services belongs to here
         
             
 For example, entityies in the 'User' aggregate root in 'identityacces' may be defined in a pakcage named 'io.reactivesw.identityaccess.domain.user'. 

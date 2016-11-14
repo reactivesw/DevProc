@@ -1,0 +1,2 @@
+# Coding Style
+If there is no strong good reason, we just follow the [AirBnb JavaScript Style](https://github.com/airbnb/javascript) and [AirBnb CSS and SASS Style](https://github.com/airbnb/css). Anything not follow these styles should be explicitly documented here. 

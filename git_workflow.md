@@ -4,7 +4,6 @@
 
 ### 1.1. Username and Email
 Ensure that Git is setup to use your email address in the ~/.gitconfig file. You can do this from the command line:
-
 ```sh
 git config --global user.name "Your Name"
 git config --global user.email "your_email@mail.com”
@@ -35,13 +34,14 @@ fi
 
 export PS1
 ```
+
 This will display the branch name next to the folder name in the bash prompt.
 
 ## 2. Basic Workflow
 
 Each service has a repository that can be built, tested, released and deployed independently. For each repository, we use the following workflow: 
 
-1. An organisation manager creates a new repository for a new service/task. 
+1. The team creates a new repository for a new service/task. 
 3. A developer creates a branch (https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for a new feature or bug fix. 
 4. A developer creates, edits, renames, moves, or deletes files. 
 5. Send a pull request (https://help.github.com/articles/using-pull-requests/). 
