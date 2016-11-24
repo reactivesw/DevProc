@@ -1,4 +1,4 @@
-# Vue Setup Sample
+# Start A New Vue Project
 Base on [Jayway's Vue.js 2.0 workshop](https://jayway.github.io/vue-js-workshop/), this document descripts the steps to scaffold a project and add more components to make it a good fit for non-trivial project. The sample project is in the [vue_sample](./vue_sample).
 
 ## 1. Scaffold a Project 
