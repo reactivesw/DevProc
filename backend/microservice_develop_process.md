@@ -9,21 +9,35 @@ Before we start, we should figure out the detail scope of this micro-service, so
 ## Use Package-info
  each package should contains its own `package-info.java`
 
+## Use plural to name our package, 
+like`io.reactivesw.carts` not`io.reactivesw.cart`
+
+## Database
+### Naming table  
+Table name should has micro-service's name as prefix, like:
+```
+@table(name = "myservice_mytable")
+```
+### Use Column Type
+We can use all the kind of type that our db support, but we still have some basic rule for it:
+1. `JSON`, if your column need to support dynamic fields, the you can use JSON, If your column need very frequently search or query, you should not use JSON and save is in an independent table.
+
 ## Domain
 Should only contains domain model and domain service.
 
 ### Domain model
-Domain model should under `entities` package. And we have two kind of domain model: business model, value model.
+Domain model should under `entities` package. And we have two kind of domain model: business model, value model.a
 
 1. Naming
-Usually, our domain model has strong relation with the database entity, so we name our domain model with `entity` as suffix. Like:
+Usually, our domain model has strong relation with the database entity, so we name our business model with `entity` as suffix. Like:
 ```
 ProductEntity
 ```
-and table name should has micro-service's name as prefix, like:
+and we name our value model with `Value` as suffix, and keep it in the subfolder`values`. like:
 ```
-@table(name = "myservice_mytable")
+ProductNameValue
 ```
+
 If the entity's column name is the same with the property name, we do not need to add `name` in `@Column`, else we need to add the name, like:
 ```
 @Column
@@ -46,12 +60,14 @@ For all business model(like `product`), we should contains an version, createAt,
 4. Property type
 We only use wrap class not primitive type, because the primitive type may have default value that may makes some confusion
 
+5. Domain model 
+
 
 ## Domain service
 Domain service only handle business logic.
 
 1. Entry & output
-the entry and output of the domain service should the logic model (like the api model), not the domain model
+the entry and output of the domain service should the domain model, not the DTO.
 
 # Restful API
 For now, all of our micro-service expose their service as RESTful service
@@ -82,7 +98,7 @@ Each step should have someone review.
 this is fellow `How to submit`
 1. review the document: work flow, if it's work flow is correct.
 2. review the api for: the api pattern, the model(fellow our review guide) 
-3. review the domain model and service: fellow the `Domain` and our review guide
+3. review the domain model and service: fellow the `Domain` and our `review guide`
 4. review the controller: review the work it dose
 5. review test: if it covers all the work flow and all kind of situation
 
