@@ -21,15 +21,16 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import * as types from '../store/products-types'
 
 export default {
   computed: mapGetters({
-    products: 'getProducts'
+    products: types.GET_PRODUCTS
   }),
   methods: {
-    ...mapActions([
-      'fetchProducts'
-    ])
+    ...mapActions({
+      fetchProducts: types.FETCH_PRODUCTS
+    })
   },
   created () {
     this.fetchProducts()

@@ -1,8 +1,8 @@
-import { FETCH_PRODUCTS } from './mutation-types'
+import { SET_PRODUCTS } from '../../products-types'
 
 // special syntax due to the computed property name
 export const mutations = {
-  [FETCH_PRODUCTS] (state, products) {
+  [SET_PRODUCTS] (state, products) {
     state.products = products
   }
 }

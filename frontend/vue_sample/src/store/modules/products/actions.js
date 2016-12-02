@@ -1,7 +1,9 @@
 import { http } from 'vue'
-import { FETCH_PRODUCTS } from './mutation-types'
+import { FETCH_PRODUCTS, SET_PRODUCTS } from '../../products-types'
 
-export function fetchProducts ({ commit }) {
-  return http.get('products/')
-    .then((response) => commit(FETCH_PRODUCTS, response.body.data))
+export const actions = {
+  [FETCH_PRODUCTS] ({ commit }) {
+    return http.get('products/')
+      .then((response) => commit(SET_PRODUCTS, response.body.data))
+  }
 }

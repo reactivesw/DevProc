@@ -107,22 +107,35 @@ Optionally, run `npm run dev` to check that the site is up and running correctly
 
 ## 5. Create The Store
 We use modules to manage the store for different parts of an application. 
- 
+
 ### 5.1. Install `vuex`
 Run `npm install --save vuex` to install the state store plugin. 
+
+## 7.1. Create Mutation Type Constants
+Create `src/store/products-types.js` file as the following:
+
+```js
+export const GET_PRODUCTS = 'products/GET_PRODUCTS'
+```
 
 ### 5.2. Create the `getProducts` Getter
 Create `src/store/modules/products/getters.js` as the following:
 
 ```js
-export const getProducts = state => state.products
+import { GET_PRODUCTS } from '../../products-types'
+
+export const getters = {
+  [GET_PRODUCTS] (state) {
+    return state.products
+  }
+}
 ```
 
 ### 5.3. Create the Products Store Module
 Create `src/store/modules/products/index.js` with the following content: 
 
 ```js
-import * as getters from './getters'
+import { getters } from './getters'
 
 const initialState = {
   products: []
@@ -176,15 +189,17 @@ Add the following content to `src/components/ProductList.vue` to get products da
 ```js
 <script>
 import { mapGetters } from 'vuex'
+import * as types from '../store/products-types'
 
 export default {
   computed: mapGetters({
-    products: 'getProducts'
+    products: types.GET_PRODUCTS
   })
 }
 </script>
 ```
-In the above code, we map the `getProducts` getter meethod to a local computed property with a name `products`. 
+
+In the above code, we map the `types.GET_PRODUCTS` getter meethod to a local computed property with a name `products`. 
 
 ## 6. Create HTTP Server API and Set HTTP Client 
 
@@ -245,20 +260,23 @@ Vue.http.options.root = `http://localhost:${port}/api`
 
 ## 7. Use Mutations and Actions
 
-### 7.1. Create Mutation Type Constants
-Create `src/store/modules/products/mutation-types.js` file as the following:
+### 7.1. Add Type Constants
+Edit the `src/store/products-types.js` file as the following:
+
 ```js
-export const FETCH_PRODUCTS = 'products/FETCH_PRODUCTS';
+export const FETCH_PRODUCTS = 'products/FETCH_PRODUCTS'
+export const SET_PRODUCTS = 'products/SET_PRODUCTS'
+export const GET_PRODUCTS = 'products/GET_PRODUCTS'
 ```
 
 ### 7.2. Create the `FETCH_PRODUCTS` Mutation
 Create `src/store/modules/products/mutations.js` as the following:
 ```js
-import { FETCH_PRODUCTS } from './mutation-types'
+import { SET_PRODUCTS } from '../../products-types'
 
 // special syntax due to the computed property name
 export const mutations = {
-  [FETCH_PRODUCTS] (state, products) {
+  [SET_PRODUCTS] (state, products) {
     state.products = products
   }
 }
@@ -266,13 +284,16 @@ export const mutations = {
 
 ### 7.3. Create the `FETCH_PRODUCTS` Action
 Create the `src/store/modules/products/actions.js` as the following: 
-```js
-iimport { http } from 'vue'
-import { FETCH_PRODUCTS } from './mutation-types'
 
-export function fetchProducts ({ commit }) {
-  return http.get('products/')
-    .then((response) => commit(FETCH_PRODUCTS, response.body.data))
+```js
+import { http } from 'vue'
+import { FETCH_PRODUCTS, SET_PRODUCTS } from '../../products-types'
+
+export const actions = {
+  [FETCH_PRODUCTS] ({ commit }) {
+    return http.get('products/')
+      .then((response) => commit(SET_PRODUCTS, response.body.data))
+  }
 }
 ```
 
@@ -280,9 +301,9 @@ export function fetchProducts ({ commit }) {
 Edit `src/store/modules/products/index.js` to have the following content: 
 
 ```js
-import * as getters from './getters'
+import { getters } from './getters'
 import { mutations } from './mutations'
-import * as actions from './actions'
+import { actions } from './actions'
 
 const initialState = {
   products: []
@@ -301,15 +322,16 @@ Edit the `<script>` in `src/components/ProductList.vue` to have the following co
 
 ```js
 import { mapGetters, mapActions } from 'vuex'
+import * as types from '../store/products-types'
 
 export default {
   computed: mapGetters({
-    products: 'getProducts'
+    products: types.GET_PRODUCTS
   }),
   methods: {
-    ...mapActions([
-      'fetchProducts'
-    ])
+    ...mapActions({
+      fetchProducts: types.FETCH_PRODUCTS
+    })
   },
   created () {
     this.fetchProducts()
@@ -317,5 +339,5 @@ export default {
 }
 ```
 
-In the above code, we map the `fetchProducts` action to a local method with the same name, then call it when the component is created. 
+In the above code, we map the `types.FETCH_PRODUCTS` as a local method `fetchProducts` and call it when the component is created. 
 

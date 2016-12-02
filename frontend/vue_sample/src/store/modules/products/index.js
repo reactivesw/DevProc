@@ -1,6 +1,6 @@
-import * as getters from './getters'
+import { getters } from './getters'
 import { mutations } from './mutations'
-import * as actions from './actions'
+import { actions } from './actions'
 
 const initialState = {
   products: []
