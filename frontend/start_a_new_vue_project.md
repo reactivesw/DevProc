@@ -106,17 +106,20 @@ export default {
 Optionally, run `npm run dev` to check that the site is up and running correctly. 
 
 ## 5. Create The Store
+We use modules to manage the store for different parts of an application. 
+ 
 ### 5.1. Install `vuex`
 Run `npm install --save vuex` to install the state store plugin. 
 
 ### 5.2. Create the `getProducts` Getter
-Create `src/vuex/modules/products/getters.js` as the following:
+Create `src/store/modules/products/getters.js` as the following:
+
 ```js
 export const getProducts = state => state.products
 ```
 
 ### 5.3. Create the Products Store Module
-Create `src/vuex/modules/products/index.js` with the following content: 
+Create `src/store/modules/products/index.js` with the following content: 
 
 ```js
 import * as getters from './getters'
@@ -132,7 +135,7 @@ export default {
 ```
 
 ### 5.4. Create the Store with the Products Store Module
-Create `src/vuex/store.js` as following: 
+Create `src/store/index.js` as following: 
 ```js
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -156,7 +159,7 @@ In `src/main.js`, import the newly created store and add it to the root instance
 
 ```js
 // Step 1: import it
-import store from './vuex/store'
+import store from './store'
 
 new Vue({
   el: '#app',
@@ -241,14 +244,15 @@ Vue.http.options.root = `http://localhost:${port}/api`
 ```
 
 ## 7. Use Mutations and Actions
+
 ### 7.1. Create Mutation Type Constants
-Create `src/vuex/modules/products/mutation-types.js` file as the following:
+Create `src/store/modules/products/mutation-types.js` file as the following:
 ```js
 export const FETCH_PRODUCTS = 'products/FETCH_PRODUCTS';
 ```
 
 ### 7.2. Create the `FETCH_PRODUCTS` Mutation
-Create `src/vuex/modules/products/mutations.js` as the following:
+Create `src/store/modules/products/mutations.js` as the following:
 ```js
 import { FETCH_PRODUCTS } from './mutation-types'
 
@@ -261,7 +265,7 @@ export const mutations = {
 ```
 
 ### 7.3. Create the `FETCH_PRODUCTS` Action
-Create the `src/vuex/modules/products/actions.js` as the following: 
+Create the `src/store/modules/products/actions.js` as the following: 
 ```js
 iimport { http } from 'vue'
 import { FETCH_PRODUCTS } from './mutation-types'
@@ -273,7 +277,7 @@ export function fetchProducts ({ commit }) {
 ```
 
 ### 7.4. Update the Products Store Module
-Edit `src/vuex/modules/products/index.js` to have the following content: 
+Edit `src/store/modules/products/index.js` to have the following content: 
 
 ```js
 import * as getters from './getters'

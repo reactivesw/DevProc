@@ -11,7 +11,7 @@ Vue.http.options.root = `http://localhost:${port}/api`
 // import some global styles
 import './styles/style.scss'
 
-import store from './vuex/store'
+import store from './store'
 
 /* eslint-disable no-new */
 new Vue({
