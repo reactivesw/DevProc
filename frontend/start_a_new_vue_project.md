@@ -5,7 +5,7 @@ Base on [Jayway's Vue.js 2.0 workshop](https://jayway.github.io/vue-js-workshop/
 
 Run `npm install -g vue-cli` to install vue-client. If you already have it, run `npm update -g vue-cli` to update it to the latest version. You may need to use `sudo` to install it as a global package. 
 
-Run `vue init webpack my-project` to create a new project named `my_project`. When ased, use recommended default settings and answer "Y" to unit test and e2e test.  
+Run `vue init webpack my-project` to create a new project named `my-project`. When asked, use recommended default settings and answer "Y" to unit test and e2e test.  
 
 For "vue-clie@2.5.0" (the version when writing this doc), edit the package.json and change the following two lines:
 * change vue version to the latest (find it in https://github.com/vuejs/vue/releases): `"vue": "^2.0.5",`
@@ -45,7 +45,7 @@ npm install --save-dev sass-loader
 ```
 
 ### 3.3. Create a Style File with Standard Style
-create the `src/styles` folder and create a `style.scss` file with the following content: 
+create a `src/styles` folder and create a `style.scss` file with the following content: 
 ```
 @import "../../node_modules/bootstrap/scss/bootstrap-flex.scss";
 ```
@@ -106,15 +106,14 @@ export default {
 Optionally, run `npm run dev` to check that the site is up and running correctly. 
 
 ## 5. Create The Store
-We use modules to manage the store for different parts of an application. 
+We use modules to manage the store for different parts of an application. Run `npm install --save vuex` to install the state store plugin. 
 
-### 5.1. Install `vuex`
-Run `npm install --save vuex` to install the state store plugin. 
-
-## 7.1. Create Mutation Type Constants
+## 5.1. Create Type Constants
 Create `src/store/products-types.js` file as the following:
 
 ```js
+export const FETCH_PRODUCTS = 'products/FETCH_PRODUCTS'
+export const SET_PRODUCTS = 'products/SET_PRODUCTS'
 export const GET_PRODUCTS = 'products/GET_PRODUCTS'
 ```
 
