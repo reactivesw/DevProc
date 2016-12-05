@@ -84,6 +84,8 @@ Actually, the controller is the place we expose our service. And we finish these
 3. handle the exception if needed
 4. return the result data
 
+# About model mapper
+Do not use model mapper.
 
 # How to submit
 Each step should have someone review.
