@@ -14,8 +14,8 @@ Enabling annotation processing will make it work
 
 But if you are on a Mac, make sure you enable annotation processing(tick the checkbox) from both the places available.
 
-1. Intellij Idea -> Preferences -> Compiler -> Annotation Processors
-2. File -> Other Settings -> Default Settings -> Compiler -> Annotation Processors
+1. Intellij Idea -> Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processors
+2. File -> Other Settings -> Default Settings -> Build, Execution, Deployment -> Compiler -> Annotation Processors
 
 ## 3. use lombok
 ### 3.1 import lombok
