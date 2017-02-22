@@ -20,7 +20,7 @@ As a programmer, we know how important are the consistency and DRY. All changes 
 ## 2. Iteration Plan and Tracking
 It is important to know the team productivity because so many things built upon it. Actaully, good planning helps. We use two level Kanban boards: a team board and an individual board. The team board updates weekly and individual board updates daily. 
 
-### 2.1. Kanban Board
+### 2.1. Trello Board
 We use Trello as our project management system. All Kanban boards have the following columns: 
 * New: a new item is created.
 * Planned: an item is scheduled into working pipeline with an estimate of required time. This esitmate is not changed once it is in WIP status. The estimate is appened to the item name with a pattern of 8h or 7d -- representing 8 hours or 7 days. The position of the item is its priority. Higher position item has a higher priority to enter WIP.  

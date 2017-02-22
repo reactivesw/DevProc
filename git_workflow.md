@@ -11,7 +11,7 @@ git config --global user.email "your_email@mail.com”
 
 Likewise, in your GitHub account email settings, add your email. This step ensures that Git commits you make directly on GitHub.com (such as quick documentation fixes) and merges made via the ‘big green button’ have proper authorship metadata.
 
-### 1.2. Bash Prompt and Auto-completion
+### 1.2. Bash Prompt and Auto-completion (optional)
 Run the following to create `~/.git-completion.bash` and `~/.git-prompt.sh`:
 
 ```sh
@@ -60,7 +60,9 @@ We review work before it is merged to ensure that code is maintainable and usabl
 * Are the Git commits well organized and well annotated to help future developers understand the code development?
 
 Code reviews should also address whether the code fulfills design and performance requirements.
+
 Ideally the code review should not be a design review. Before serious coding effort is committed to a ticket, the developer should either undertake an informal design review while creating the design. 
+
 Code review discussion should happen on the GitHub pull request, with the reviewer giving a discussion summary. 
 
 Pull request conversations should only happen in ‘Conversation’ and ‘Files changed’ tabs; your comments might get lost otherwise.
