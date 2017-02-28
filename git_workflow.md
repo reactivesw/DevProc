@@ -4,9 +4,13 @@
 
 ### 1.1. Username and Email
 Ensure that Git is setup to use your email address in the ~/.gitconfig file. You can do this from the command line:
+
 ```sh
 git config --global user.name "Your Name"
 git config --global user.email "your_email@mail.com”
+
+# Optionally configure Git on OS X to properly handle line endings
+git config --global core.autocrlf input
 ```
 
 Likewise, in your GitHub account email settings, add your email. This step ensures that Git commits you make directly on GitHub.com (such as quick documentation fixes) and merges made via the ‘big green button’ have proper authorship metadata.
