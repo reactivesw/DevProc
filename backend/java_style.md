@@ -6,7 +6,7 @@ We use [Google Java Style](https://google.github.io/styleguide/javaguide.html) p
 ## 2. IntelliJ Idea IDE Settings
 
 ### 2.1. Google Java Style
-This is the Google Java sytle settings for [IntelliJ](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml). In IntelliJ IDEA, using Preferences --> Editor --> Code Style --> Manage...--> Import... to import the file. 
+This is the [Google Java sytle settings for IntelliJ](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml). In IntelliJ IDEA, using Preferences --> Editor --> Code Style --> Manage...--> Import... to import the file. 
 
 ### 2.2. No Auothor and Date in Java Class File Header
 Don't put author name and creation date in class file. To change the default IDE setting, in Preferences --> Editor --> File and Code Templates --> Includes Tab --> File Header, delete the autho and date, the file header only has empty comments as the following: 
