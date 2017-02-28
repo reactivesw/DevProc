@@ -4,8 +4,11 @@
 We use [Google Java Style](https://google.github.io/styleguide/javaguide.html) published on March 21, 2014. It has a [Chinese version](http://blog.mosil.biz/2014/05/java-style-guide/).
 
 ## 2. IntelliJ Idea IDE Settings
+
+### 2.1. Google Java Style
 This is the Google Java sytle settings for [IntelliJ](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml). In IntelliJ IDEA, using Preferences --> Editor --> Code Style --> Manage...--> Import... to import the file. 
 
+### 2.2. No Auothor and Date in Java Class File Header
 Don't put author name and creation date in class file. To change the default IDE setting, in Preferences --> Editor --> File and Code Templates --> Includes Tab --> File Header, delete the autho and date, the file header only has empty comments as the following: 
 
 ```java
@@ -15,6 +18,9 @@ Don't put author name and creation date in class file. To change the default IDE
 ```
 
 Every Java class file should have comments describing the class purpose/functions.  
+
+### 2.3. Show Quick Documentation
+IN preference --> Editor --> General, in "Ohter" group, check checkbox "Show quick documentation on mouse move". 
 
 ## 3. Style checking
 For both Java Style and additional code standard, we use [CheckStyle](http://checkstyle.sourceforge.net/) to check styles in both Eclipse editor and in Build phase. 

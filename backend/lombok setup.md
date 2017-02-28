@@ -6,16 +6,16 @@ From lombok project on github:
 
 ## 2. IDEA Plugin
 ### 2.1 install lombok plugin for IDEA
-Intellij Idea -> Preferences(command + ,) -> Plugins -> type in `lombok` -> Search in Repositories -> install -> restart IDEA
+Intellij Idea -> Preferences -> Plugins -> type in `lombok` -> Search in Repositories -> install -> restart IDEA
 
 ### 2.2 config lombok plugin
 
 Enabling annotation processing will make it work
 
-But if you are on a Mac, make sure you enable annotation processing(tick the checkbox) from both the places available.
+But if you are on a Mac, make sure you enable annotation processing in the following two places:
 
-1. Intellij Idea -> Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processors
-2. File -> Other Settings -> Default Settings -> Build, Execution, Deployment -> Compiler -> Annotation Processors
+1. Intellij Idea -> Preferences -> Build, Execution, Deployment -> Compiler -> Annotation Processors, check the checkbox of "Enable annotation processing". 
+2. File -> Other Settings -> Default Settings -> Build, Execution, Deployment -> Compiler -> Annotation Processors, check the checkbox of "Enable annotation processing".
 
 ## 3. use lombok
 ### 3.1 import lombok
