@@ -1,10 +1,17 @@
-// for spring boot
-apply plugin: 'spring-boot'
+// declare application repositories and dependencies
+
+// auto manage all spring boot dependencies
+apply plugin: 'org.springframework.boot'
 
 dependencies {
-  //database
-  compile("mysql:mysql-connector-java:5.1.26")
+  // this is a spring web app
+  compile 'org.springframework.boot:spring-boot-starter-web'
+
+  // spring jpa
   compile("org.springframework.boot:spring-boot-starter-data-jpa")
+  //postgresql driver
+  compile 'org.postgresql:postgresql:9.4.1212'
+
   //security, like password encoder.
   compile('org.springframework.security:spring-security-crypto')
   compile('org.springframework.boot:spring-boot-starter-redis')
