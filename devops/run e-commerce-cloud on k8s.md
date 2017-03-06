@@ -68,7 +68,7 @@ after service setup, get service external endpoint and visit the address:
 
 service setup success if you get customer info config like following image:
 
-![spring cloud config](/image/spring cloud config.png "spring cloud config")
+![image](./image/spring cloud config.png "spring cloud config")
 
 ## 6. add e-commerce applications
 
