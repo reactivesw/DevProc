@@ -22,6 +22,23 @@ using the following command to config k8s secret
 
 this file is a secret file, would not push to github.
 
+`secrets.yaml` template:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: reactivesw-secret
+type: Opaque
+data:
+  github.username: 
+  github.password: 
+  jwt.secret: 
+  postgres.username: 
+  postgres.password: 
+```
+all data should encode by base64
+
 ## 4. add postgres
 
 1. create deployment and service
@@ -54,6 +71,9 @@ create database product_type;
 ```
 
 ## 5. add spring cloud config
+
+this service uses github repo, the address is 
+`https://github.com/reactivesw/config-files`
 
 use following command to create spring cloud config service
 
