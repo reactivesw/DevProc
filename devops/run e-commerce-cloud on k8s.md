@@ -124,10 +124,14 @@ NAME          CLUSTER-IP   EXTERNAL-IP     PORT(S)        AGE
 api-gateway   10.3.248.5   35.184.19.183   80:30000/TCP   20m
 >
 
-visit each micro-service swagger page by external ip and service path:
+get each micro-service information by external ip and service path:
 
 ```
-http://{EXTERNAL-IP}/carts/swagger-ui.html
-http://{EXTERNAL-IP}/categories/swagger-ui.html
+http://{EXTERNAL-IP}/carts/health
+# cart, system time: 1488952103544
+
+http://{EXTERNAL-IP}/categories/health
+# category, system time: 1488952103544
+
 ......
 ```
