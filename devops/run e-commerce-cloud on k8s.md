@@ -70,7 +70,11 @@ create database product;
 create database product_type;
 ```
 
-## 5. add spring cloud config
+## 5. run redis
+run the command in 'E-Commerce-Cloud', start the redis service.
+`kubectl create -f k8s-deploy-files/redis-k8s.yaml`
+
+## 6. add spring cloud config
 
 this service uses github repo, the address is 
 `https://github.com/reactivesw/config-files`
@@ -90,9 +94,9 @@ service setup success if you get customer info config like following image:
 
 ![image](./image/spring cloud config.png "spring cloud config")
 
-## 6. add e-commerce applications
+## 7. add e-commerce applications
 
-### 6.1 cart
+### 7.1 cart
 
 use following command to create each micro-service:
 
@@ -108,7 +112,7 @@ kubectl create -f product/k8s.yaml
 kubectl create -f producttype/k8s.yaml
 ```
 
-## 7. add api-gateway service
+## 8. add api-gateway service
 
 use following command to config ingresses:
 
