@@ -28,5 +28,12 @@ The repository name shoud use the `lowercase-with-hyphens` style. The repository
 Branch naming convention suggested by GitHub team: 
 >When you want to start work on anything, you create a descriptively named branch off of the stable master branch. Some examples in the GitHub codebase right now would be user-content-cache-key, submodules-init-task or redis2-transition. This has several advantages - one is that when you fetch, you can see the topics that everyone else has been working on. Another is that if you abandon a branch for a while and go back to it later, it’s fairly easy to remember what it was.
 
-## 4. Related Resources
+## 4. Rules
+1. The master branch is alway ready to release. 
+2. Every pull request must be reviewed before merge to the master. 
+3. Open pull request, review and merge frequently. 
+
+To meet a constant smooth workflow, a developer should combine multiple local commits into one commit to be reviewed and merged. Please check http://stackoverflow.com/questions/5308816/how-to-use-git-merge-squash for details.   
+
+## 5. Related Resources
 The [Pull request review guide](./review_guide/pull_request_review_guide.md) give detail information about review purpose, what to review and how to review. 
