@@ -1,79 +1,32 @@
 # GitHub Workflow
+This document describes the workflow used in our development process. 
 
-## 1. Setup
+## 1. The GitHub Workflow
+As a small team, we literally follow the so-called [GitHub Workflow](https://guides.github.com/introduction/flow/). It is also explained in the [GitHub Workflow Blog](http://scottchacon.com/2011/08/31/github-flow.html): 
 
-### 1.1. Username and Email
-Ensure that Git is setup to use your email address in the ~/.gitconfig file. You can do this from the command line:
+> It is very simple, very effective and works for fairly large teams - GitHub is 35 employees now, maybe 15-20 of whom work on the same project (github.com) at the same time. I think that most development teams - groups that work on the same logical code at the same time which could produce conflicts - are around this size or smaller. Especially those that are progressive enough to be doing rapid and consistent deployments.
 
-```sh
-git config --global user.name "Your Name"
-git config --global user.email "your_email@mail.com”
-
-# Optionally configure Git on OS X to properly handle line endings
-git config --global core.autocrlf input
-```
-
-Likewise, in your GitHub account email settings, add your email. This step ensures that Git commits you make directly on GitHub.com (such as quick documentation fixes) and merges made via the ‘big green button’ have proper authorship metadata.
-
-### 1.2. Bash Prompt and Auto-completion (optional)
-Run the following to create `~/.git-completion.bash` and `~/.git-prompt.sh`:
-
-```sh
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
-```
-
-Then add the following to your `~/.bashrc` or `~/.bash_profile` after `PATH`:
-
-```sh
-# Set the base PS1
-export PS1="\t: \W$ "
-
-# Source the git bash completion file
-if [ -f ~/.git-completion.bash ]; then
-    source ~/.git-completion.bash
-    source ~/.git-prompt.sh
-    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-fi
-
-export PS1
-```
-
-This will display the branch name next to the folder name in the bash prompt.
+Every team member should fully understand the workflow. Youtube https://youtu.be/oFYyTZwMyAg has a short tutorial for pull, reveiw and merge. 
 
 ## 2. Basic Workflow
-
 Each service has a repository that can be built, tested, released and deployed independently. For each repository, we use the following workflow: 
 
-1. The team creates a new repository for a new service/task. The repository name shoud use the `lowercase-with-hyphens` style. 
-1. A developer creates a branch (https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for a new feature or bug fix. 
-7. A developer creates, edits, renames, moves, or deletes files. 
-5. Send a pull request (https://help.github.com/articles/using-pull-requests/). 
+1. The team creates a new repository for a new service/task. 
+2. A developer creates a branch (https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for a new feature or bug fix. 
+3. A developer creates, edits, renames, moves, or deletes files. 
+4. Send a pull request (https://help.github.com/articles/using-pull-requests/). 
 5. Ask a peer to do a code review -- optionally there are some discussions and changes.
 6. Make changes on the branch as needed. The pull request will update automatically.  
-6. Once changes are approved by the reviewer, the developer merges the pull request(https://help.github.com/articles/merging-a-pull-request/), once the branch is ready to go, using the big green button.
-7. Delete the branch (https://help.github.com/articles/deleting-unused-branches/) in the pull request or on the branches page. 
+7. Once changes are approved by the reviewer, the developer merges the pull request(https://help.github.com/articles/merging-a-pull-request/), once the branch is ready to go, using the big green button.
+8. Delete the branch (https://help.github.com/articles/deleting-unused-branches/) in the pull request or on the branches page. 
 
-Youtube https://youtu.be/oFYyTZwMyAg has a short tutorial for pull, reveiw and merge. 
+## 3. Naming Conventions
+Naming is very important therefore we have a section just for it. 
 
-## 3. Code Review
-We review work before it is merged to ensure that code is maintainable and usable by someone other than the author.
-* Is the code well commented, structured for clarity, and consistent with DM’s code style?
-* Is there adequate unit test coverage for the code?
-* Is the documentation augmented or updated to be consistent with the code changes?
-* Are the Git commits well organized and well annotated to help future developers understand the code development?
+The repository name shoud use the `lowercase-with-hyphens` style. The repository should be named after its primary business role such as "customer-authentication" or "product-category". 
 
-Code reviews should also address whether the code fulfills design and performance requirements.
+Branch naming convention suggested by GitHub team: 
+>When you want to start work on anything, you create a descriptively named branch off of the stable master branch. Some examples in the GitHub codebase right now would be user-content-cache-key, submodules-init-task or redis2-transition. This has several advantages - one is that when you fetch, you can see the topics that everyone else has been working on. Another is that if you abandon a branch for a while and go back to it later, it’s fairly easy to remember what it was.
 
-Ideally the code review should not be a design review. Before serious coding effort is committed to a ticket, the developer should either undertake an informal design review while creating the design. 
-
-Code review discussion should happen on the GitHub pull request, with the reviewer giving a discussion summary. 
-
-Pull request conversations should only happen in ‘Conversation’ and ‘Files changed’ tabs; your comments might get lost otherwise.
-
-Code reviews are a collaborative check-and-improve process. Reviewers do not hold absolute authority, nor can developers ignore the reviewer’s suggestions. The aim is to discuss, iterate, and improve the pull request until the work is ready to be deployed on master.
-
-If the review becomes stuck on a design decision, that aspect of the review can be elevated to seek team-wide consensus.
-
-## 4. Submodules (Should Be Avoided)
-Submodules should be avoided as much as possible. Dependencies are really evils. 
+## 4. Related Resources
+The [Pull request review guide](./review_guide/pull_request_review_guide.md) give detail information about review purpose, what to review and how to review. 
