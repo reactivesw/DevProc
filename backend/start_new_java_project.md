@@ -2,7 +2,7 @@
 
 ## 1. Create a GitHub Repository
 In GitHub web site, perform the following steps:
-* using a lowercase name pattern: first_second
+* use repository name style defined in [Git Workflow](../git_workflow.md).
 * set license to Apache 2.0
 * add a .gitignore for java project
 * add README.md to describe the project
@@ -14,8 +14,8 @@ In your local development folder, setup the initial project.
 * copy the sample [resources/gitignore](resources/gitignore) as the `.gitignore` file in respository root.
 * run `gradle init --type basic` to initialize basic project structure.
 * delete `settings.gradle` file if it doesn't have sub-projects. 
-* edit `build.gradle` file to fit the projeect needs. 
-* if the project has documents, create a `documents` folder.
+* create gradle build scripts as suggested by the [build scripts](./build_scripts.md) file. 
+* if the project has documents, create a `docs/` folder.
 * commit and push changes for this initial project structure.
 
 ## 3. Source Code and Test 
