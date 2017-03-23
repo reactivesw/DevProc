@@ -45,9 +45,9 @@ This will display the branch name next to the folder name in the bash prompt.
 
 Each service has a repository that can be built, tested, released and deployed independently. For each repository, we use the following workflow: 
 
-1. The team creates a new repository for a new service/task. 
-3. A developer creates a branch (https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for a new feature or bug fix. 
-4. A developer creates, edits, renames, moves, or deletes files. 
+1. The team creates a new repository for a new service/task. The repository name shoud use the `lowercase-with-hyphens` style. 
+1. A developer creates a branch (https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for a new feature or bug fix. 
+7. A developer creates, edits, renames, moves, or deletes files. 
 5. Send a pull request (https://help.github.com/articles/using-pull-requests/). 
 5. Ask a peer to do a code review -- optionally there are some discussions and changes.
 6. Make changes on the branch as needed. The pull request will update automatically.  
@@ -75,22 +75,5 @@ Code reviews are a collaborative check-and-improve process. Reviewers do not hol
 
 If the review becomes stuck on a design decision, that aspect of the review can be elevated to seek team-wide consensus.
 
-## 4. Submodules
-### 1. To clone a project with sub modules
-Use the command `git submodule update --init --recursive`
-
-### 2. To initially add a submodule to a project  
-Use the command `git submodule add url_of_the_repository`
-
-### 3. To Remove the submodule from a project
-Use the following three commands: 
-```sh
-// Remove the submodule entry from .git/config
-git submodule deinit -f path/to/submodule
-
-// Remove the submodule directory from the superproject's .git/modules directory
-rm -rf .git/modules/path/to/submodule
-
-// Remove the entry in .gitmodules and remove the submodule directory located at path/to/submodule
-git rm -f path/to/submodule
-```
+## 4. Submodules (Should Be Avoided)
+Submodules should be avoided as much as possible. Dependencies are really evils. 

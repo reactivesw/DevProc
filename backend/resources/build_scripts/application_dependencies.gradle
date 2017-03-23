@@ -1,4 +1,4 @@
-// declare application repositories and dependencies
+// declare application dependencies and possibly extra repositories 
 
 // auto manage all spring boot dependencies
 apply plugin: 'org.springframework.boot'
