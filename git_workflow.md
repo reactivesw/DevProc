@@ -49,7 +49,7 @@ Each service has a repository that can be built, tested, released and deployed i
 1. A developer creates a branch (https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for a new feature or bug fix. 
 7. A developer creates, edits, renames, moves, or deletes files. 
 5. Send a pull request (https://help.github.com/articles/using-pull-requests/). 
-5. Ask a peer to do a code review -- optionally there are some discussions and changes.
+5. Ask a peer to do a code review -- optionally there are some discussions and changes.[How To Review Pull Request](./review_guide/pull_request_review_guide.md)
 6. Make changes on the branch as needed. The pull request will update automatically.  
 6. Once changes are approved by the reviewer, the developer merges the pull request(https://help.github.com/articles/merging-a-pull-request/), once the branch is ready to go, using the big green button.
 7. Delete the branch (https://help.github.com/articles/deleting-unused-branches/) in the pull request or on the branches page. 
