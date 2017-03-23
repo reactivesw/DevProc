@@ -1,5 +1,8 @@
 # Development Process
-A set of documents about development process. 
+
+**This repository should be reviewed weekly or bi-weekly to keep everyone on the same page of development process**. 
+
+This is set of documents about development process. 
 
 As the project goes on, we will add more documents here to standardize our development process. All documents should follow the styel of this one: 
 * There is a level 1 title as the docuent title with an optioinal description of the document. 

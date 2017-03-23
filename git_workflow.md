@@ -33,7 +33,7 @@ Branch naming convention suggested by GitHub team:
 2. Every pull request must be reviewed before merge to the master. 
 3. Open pull request, review and merge frequently. 
 
-To meet a constant smooth workflow, a developer should combine multiple local commits into one commit to be reviewed and merged. Please check http://stackoverflow.com/questions/5308816/how-to-use-git-merge-squash for details.   
+To meet a constant smooth workflow, a developer should combine multiple local commits into one commit (and give it a helpful message summurizing major changes) to be reviewed and merged. Please check http://stackoverflow.com/questions/5308816/how-to-use-git-merge-squash for details. The [squash or not squash](http://jamescooke.info/git-to-squash-or-not-to-squash.html) explains the squash tradeoffs.  
 
 ## 5. Related Resources
 The [Pull request review guide](./review_guide/pull_request_review_guide.md) give detail information about review purpose, what to review and how to review. 
