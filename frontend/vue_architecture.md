@@ -30,9 +30,12 @@ Create all remote requests in a file inside the `infrastructure/api_client/`.
 * in the container component, check if the data is available in presentation component template using `v-if` before pass it to the child presentation component. 
 
 ## Step 5: Raise event in a presentation component
-
+* raise an event with a name that starts with an event source name and terminates with a verb ending with -ing or -ed (Closing/Closed). 
 
 ## Step 6: Handle event in a container component 
+* a paraent uses `@eventName="theEventHandler"` to catch the event.
+* an event handler should have a "EventHandler" postfix and is often defined as a component method.
+* if it is a remote call, the event handler call the mapped action to start the process. 
 
 # Error Handling
 
