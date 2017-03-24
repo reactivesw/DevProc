@@ -7,8 +7,8 @@ There are three communication mechanism between two components: props for a pare
 We should use functional stateless components as much as possible. Therefore the primary interaction between a parent and child is via props and events. 
 
 A component uses states when 
-* it communicate with backend or 
-* it is used by multiple components. 
+* it communicates with backend or 
+* it is used/controlled by multiple components. 
 
 # Workflow
 
@@ -16,11 +16,13 @@ A component uses states when
 Create all remote requests in a file inside the `infrastructure/api_client/`. 
 
 ## Step 2: Create Store State
-* create types in `infrastructure/store/`. 
+* create types in `infrastructure/store/`. All store putter/getter using as naming convention of "setMyState" and "getMyState". For async actions, using "fetchStateData" for data fetching, "putStateData" for data update, "postStateData" for data creation, and "deleteStateData" for delete.  
 * create the initial states, actions, getters and mutations and put them into `index.ts`.
 * add the module to `infrastructure/store/index.ts`.
 
-## Step 3: Fetch and Get data in container component
+!! The store mutation method only takes one payload argument. 
+
+## Step 3: Fetch and get data in a container component
 * use `mapActions` to map an action to a method of a component. 
 * call the fetch data in `created` lifecycle callback to fetch data and put it in the store. 
 * use `mapGetters` to map a state getter to get state data from store and set it as a `computed` prop.
@@ -35,7 +37,11 @@ Create all remote requests in a file inside the `infrastructure/api_client/`.
 ## Step 6: Handle event in a container component 
 * a paraent uses `@eventName="theEventHandler"` to catch the event.
 * an event handler should have a "EventHandler" postfix and is often defined as a component method.
-* if it is a remote call, the event handler call the mapped action to start the process. 
+* if it is a remote call, the event handler call the mapped action to call remote server.
+
+## Step 7: Process result 
+* get the result or handle error
+* update local state based on the call result. 
 
 # Error Handling
 
