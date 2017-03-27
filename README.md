@@ -21,13 +21,10 @@ The [deploy.md](./deply.md) describes the steps of deployment.
 ## 4. Review Guides
 The [review_guides](./review_guides/) folder contains guides for document review and code review. 
 
-## 5. Test Guides
-The [test](./test) folder contains test guides. 
+## 5.  DevOps
+This [devops/ folder](./devops) contains documents about DevOps
 
-## 6.  DevOps
-This [devops folder](./devops) contains documents about DevOps
-
-## 7. Backend
+## 6. Backend
 The [backend folder](./backend) contains documents for backend development. It include the following content: 
 * Start Java Project: the steps to create a new Java project.
 * Java Style: show the style we use for our code. And give a short description about it.
@@ -35,8 +32,8 @@ The [backend folder](./backend) contains documents for backend development. It i
 * Build Scripts: scripts used in build process. 
 * Publish Process: publish code to github, build and test it. 
 
-## 8. Frontend
+## 7. Frontend
 The [frontend folder](./frontend) contains documents for frontend development. 
 
-### 8.1. Start A New Vue Project
-The [./frontend/start_a_new_vue_project.md](./frontend/start_a_new_vue_project.md) describes details steps of creating a new vue project. The [./frontend/vue_ctp_sample](./frontend/vue_ctp_sample) folder has a sample project. 
+### 7.1. Start A New Vue Project
+The [./frontend/vue_project_guide.md](./frontend/vue_project_guide.md) describes detail steps of creating and architecture of a new vue project. 
