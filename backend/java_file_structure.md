@@ -116,9 +116,7 @@ This is the reource directory, including `main/java`, `main/resources`, `test/gr
 This file is used by travis-ci, here is the [reference](https://docs.travis-ci.com/).
 This file defines build script, docker push script, deploy script.
 
-```
-
-#### 2.1.7 codecov.yml
+#### 2.1.6 codecov.yml
 
 This file define code coverage require.
 Here is template:
@@ -152,7 +150,7 @@ comment:
   require_changes: no
 ```
 
-#### 2.1.6 README.md
+#### 2.1.7 README.md
 
 This is project readme file.
 
