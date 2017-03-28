@@ -251,7 +251,7 @@ Here is the special specifications we define in java project.
 
 In mapper class, usually define two types method: `map View Model to Entity Model` or `map Entity Model to View Model`.
 Name method `map View Model to Entity Model` to be `toEntity`, name method `map Entity Model to View Model` to be `toModel`.
-if mapper class has method which build an object from anthod type object, like building an order from cart, name the method to be `of`.
+if mapper class has method which build an object from anthod type object, like building an order from cart, name the method to be `build`.
 
 ### 3.2 method order
 
