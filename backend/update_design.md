@@ -3,7 +3,8 @@ This doc introduce how we design update function in each  micro-service
 
 # The Definition
 
-- UpdateAction
+## UpdateAction
+
 All action should implement the same interface `UpdateAction`, and implement the `getActionName` function to return the function, and in the interface, we need to set the `JsonSubTypes`, like:
 ```java
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property =
@@ -64,7 +65,8 @@ public class AddLineItem implements UpdateAction, Serializable {
 }
 ```
 
-- UpdateRequest
+## UpdateRequest
+
 UpdateRequest is a collection of action and version, and we used it to pass data to the api. All UpdateRequest should keep the same:
 ```java
 public class UpdateRequest {
@@ -89,7 +91,8 @@ public class UpdateRequest {
 }
 ```
 
-- Updater
+## Updater
+
 Updater is the real service for each action, we find the specific service by action name, so we need to name the service bean name, the service should like this:
 ```java
 @Service(value = CartUpdateActionUtils.ADD_LINE_ITEM)
@@ -106,9 +109,9 @@ public class AddLineItemService implements Updater<Cart, UpdateAction> {
 All Updater service should implement Updater, and the first type is the `entity` for update, the second should be `UpdateAction`.
 The Interface `Updater` is defined in commons lib.
 
-- UpdateService
+## UpdateService
 UpdateService is the updater executor. It also be a special `Updater`
 
-The full image should like this:
+# The full image:
 ![FullImage](./resources/fullImage.png)
 
