@@ -112,6 +112,6 @@ The Interface `Updater` is defined in commons lib.
 ## UpdateService
 UpdateService is the updater executor. It also be a special `Updater`
 
-# The full image:
+# The Full Image:
 ![FullImage](./resources/fullImage.png)
 
