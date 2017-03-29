@@ -115,3 +115,17 @@ UpdateService is the updater executor. It also be a special `Updater`
 # The Full Image:
 ![FullImage](./resources/fullImage.png)
 
+# How To Use
+Use Autowired to insert the update service to the class you need use this. like:
+```java
+  @Autowired
+  private transient UpdaterService cartUpdater;
+```
+And call the service to handle each action, like:
+```java
+    ...Get actions from UpdateRequest...
+    //update data from action
+    actions.stream().forEach(
+        action -> cartUpdater.handle(cart, action)
+    );
+```
