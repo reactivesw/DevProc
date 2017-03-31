@@ -116,9 +116,7 @@ This is the reource directory, including `main/java`, `main/resources`, `test/gr
 This file is used by travis-ci, here is the [reference](https://docs.travis-ci.com/).
 This file defines build script, docker push script, deploy script.
 
-```
-
-#### 2.1.7 codecov.yml
+#### 2.1.6 codecov.yml
 
 This file define code coverage require.
 Here is template:
@@ -152,7 +150,7 @@ comment:
   require_changes: no
 ```
 
-#### 2.1.6 README.md
+#### 2.1.7 README.md
 
 This is project readme file.
 
@@ -253,7 +251,7 @@ Here is the special specifications we define in java project.
 
 In mapper class, usually define two types method: `map View Model to Entity Model` or `map Entity Model to View Model`.
 Name method `map View Model to Entity Model` to be `toEntity`, name method `map Entity Model to View Model` to be `toModel`.
-if mapper class has method which build an object from anthod type object, like building an order from cart, name the method to be `of`.
+if mapper class has method which build an object from anthod type object, like building an order from cart, name the method to be `build`.
 
 ### 3.2 method order
 
