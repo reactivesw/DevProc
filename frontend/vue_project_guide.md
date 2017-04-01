@@ -28,8 +28,20 @@ A component uses states when
 * it communicates with backend or 
 * it is used/controlled by multiple components. 
 
-## 3. Workflow
+## 3. Entity Editing Pattern
+A common use case in a business application is to retrieve an entity from a backend server and edit it using an HTML form. The suggested method is using the `computed` option of a component to 1) retrieve the entity using a store action; 2) make a copy of the entity use either `return Object.assign({}, entity)` or if only a few attributes are neeed, `return { {attr1, attr2 } = { ...entity }}`. 
+
+Then bind the `computed` copy to a form with all input fields using `v-model` directive. 
+
+Finally, when a user submits/saves the changes, raise an event and send the `computed` copy to the backend server.  
+
+## 4. Workflow
 The workflow describes the steps needed to create new component in the frontedn. 
+
+### Steip 0: Create Data Model
+Create a data model for eveery api call request in `infrastructure/api_client/`. Use the data model when a component calls an action and transform the request to an actual HTTP call. 
+
+Though a store action is used to bridge the call from a component to an HTTP call, there is no need to use the data model in store action definition for two reasons: 1. Vuex proxies all action calls and the data types are lost. 2. There is no data process inside the action.   
 
 ### Step 1: Create HTTP request
 Create all remote requests in a file inside the `infrastructure/api_client/`. 
@@ -62,5 +74,5 @@ Create all remote requests in a file inside the `infrastructure/api_client/`.
 * get the result or handle error
 * update local state based on the call result. 
 
-## 4. Error Handling
+## 5. Error Handling
 TBD. 
