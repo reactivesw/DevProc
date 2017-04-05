@@ -39,7 +39,7 @@ Finally, when a user submits/saves the changes, raise an event and send the `com
 The workflow describes the steps needed to create new component in the frontedn. 
 
 ### Steip 0: Create Data Model
-Create a data model for eveery api call request in `infrastructure/api_client/`. Use the data model when a component calls an action and transform the request to an actual HTTP call. 
+Create a data model for every api call request in `infrastructure/api_client/`. Use the data model when a component calls an action and transform the request to an actual HTTP call. 
 
 Though a store action is used to bridge the call from a component to an HTTP call, there is no need to use the data model in store action definition for two reasons: 1. Vuex proxies all action calls and the data types are lost. 2. There is no data process inside the action.   
 
@@ -47,16 +47,17 @@ Though a store action is used to bridge the call from a component to an HTTP cal
 Create all remote requests in a file inside the `infrastructure/api_client/`. 
 
 ### Step 2: Create Store State
-* create types in `infrastructure/store/`. All store putter/getter using as naming convention of "setMyState" and "getMyState". For async actions, using "fetchStateData" for data fetching, "putStateData" for data update, "postStateData" for data creation, and "deleteStateData" for delete.  
+* All store putter/getter using as naming convention of "setMyState" and "getMyState". For async actions, using the most meaningful business name for the action. Use `module/operation-name` as a pattern to create method names in their corresponding getter, setter or action file.   
 * create the initial states, actions, getters and mutations and put them into `index.ts`.
 * add the module to `infrastructure/store/index.ts`.
+* It may be a good idea to check the existing state data before send remote request in a fetch function. However, careful design and implementation are required to make sure that the cached data is valid. 
 
-!! The store mutation method only takes one payload argument. 
+The store mutation and action methods only take one payload argument. 
 
-### Step 3: Fetch and get data in a container component
-* use `mapActions` to map an action to a method of a component. 
-* call the fetch data in `created` lifecycle callback to fetch data and put it in the store. 
-* use `mapGetters` to map a state getter to get state data from store and set it as a `computed` prop.
+### Step 3: Create a component
+* Use [`vue-class-component`](https://github.com/vuejs/vue-class-component) syntax to create a component.
+* Call the fetch data in `created` lifecycle callback to fetch data and put it in the store. 
+* Initially the component props have no value, therefore it is necessary to use `v-if` to guard the template content to avoid reading fields of an undefined object (either as a prop or a computed value). 
 
 ### Step 4: Pass data to a presentation component
 * define the data as a prop in a presentation component.
@@ -64,10 +65,11 @@ Create all remote requests in a file inside the `infrastructure/api_client/`.
 
 ### Step 5: Raise event in a presentation component
 * raise an event with a name that starts with an event source name and terminates with a verb ending with -ing or -ed (Closing/Closed). 
+* an event should have have a `Event` postfix in its name. For example, `defaultChangedEvent`. 
 
 ### Step 6: Handle event in a container component 
-* a paraent uses `@eventName="theEventHandler"` to catch the event.
-* an event handler should have a "EventHandler" postfix and is often defined as a component method.
+* a paraent uses `@eventName="theActionHandler"` to catch the event.
+* an event handler should have a "Handler" postfix and is often defined as a component method.
 * if it is a remote call, the event handler call the mapped action to call remote server.
 
 ### Step 7: Process result 
