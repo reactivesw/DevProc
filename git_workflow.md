@@ -37,3 +37,9 @@ A developer may want to combine multiple trivial local commits into one o commit
 
 ## 5. Related Resources
 The [Pull request review guide](./review_guide/pull_request_review_guide.md) give detail information about review purpose, what to review and how to review. 
+
+## 6. Create issue
+Create an issue to track an question or a bug, and is you are fix an issue, then association your pull request with the issue, by add link in comments of the issue. like:
+```
+See [pull request](your pull request link)
+```
