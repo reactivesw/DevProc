@@ -43,4 +43,4 @@ The producer will start when the service starts, each micro-service constains an
 ### 3.4 Work flow:
 - domain service create event, and save the event to event db.
 - the producer read event from db, and then publish it to broker.
-[Image](./producer.png)
+![Image](./producer.png)
