@@ -271,3 +271,7 @@ example:
 boolean isSelected;  //this is bad.
 boolean selected;  //this is OK.
 ```
+
+### 3.5 file name
+
+File name should be lower case letters and connected by underline.
