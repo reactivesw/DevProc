@@ -8,7 +8,7 @@ Use Json as event body and the schema of the event body:
   "id": "event id", // NOT NULL
   "createTime": long, //NOT NULL
   "sequenceNumber":long,
-  "data":{} // JSON DATA
+  "data": "json string" // JSON DATA
 }
 ```
 
@@ -29,7 +29,7 @@ The schema:
   data; //the real data of the event
 ```
 
-## 3.3 Event producer
+## 3.3 Event publisher
 The event producer read events from `event db`, and publish them to event borker.
 ### 3.3.1 How to Read events
 Read status whos staus is created, or status is pending but already expired.
@@ -37,10 +37,25 @@ Read status whos staus is created, or status is pending but already expired.
 Publish events to broker, publish a batch of events or just one.
 ### 3.3.3 How to delete event
 After publish sucessed, then delete the event from the event db.
-### 3.3.4 How to start
-The producer will start when the service starts, each micro-service constains an event producer.
 
-### 3.4 Work flow:
+## 3.4 How to start
+The producer will start when the service start, each micro-service constains an event producer.
+
+## 3.5 Work flow
 - domain service create event, and save the event to event db.
 - the producer read event from db, and then publish it to broker.
+- After publish success, delete the event from db.
 ![Image](./producer.png)
+
+# 4. Event Consumer
+Event consumer contains two part: `event reader`, `event processor`
+## 4.1 Event reader
+Event Reader read events from broker, and call the processor.
+## 4.2 Event processor
+All Processor have the same entrance, and handle the event.
+## 4.3 How to start
+The consumer will start when the service start.
+## 4.4 Work flow
+- Event reader, fetch events from broker.
+- Call processor to process the events.
+![Image](./consumer.png)
