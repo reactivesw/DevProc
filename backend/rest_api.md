@@ -21,11 +21,11 @@ Last, determin the method we need to use on this resource.
 # How to determine the method and the response  body
 Method	| HTTP Mapping            | HTTP Request Body       | 	HTTP Response Body
 ---|---|---|---
-List    |	GET <collection URL>    | Empty	                  | Resource* list
-Get     |	GET <resource URL>	    | Empty	                  | Resource*
-Create	| POST <resource URL>	    | Resource                | Resource*
-Update	| PUT <resource URL>	    | Resource	              | Resource*
-Delete	| DELETE <resource URL>	  | Empty	                  | Empty**
+List    |	GET <collection URL>    | Empty	                  | Resource list
+Get     |	GET <resource URL>	    | Empty	                  | Resource
+Create	| POST <resource URL>	    | Resource                | Resource
+Update	| PUT <resource URL>	    | Resource	              | Resource
+Delete	| DELETE <resource URL>	  | Empty	                  | Empty
 
 # How to define the URL
 - For resource type: 
