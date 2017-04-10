@@ -34,7 +34,7 @@ The schema:
 The event producer read events from `event db`, and publish them to event borker.
 
 ### 3.3.1 How to Read events
-Read Event whose status is created, or status is pending but already expired.
+Read Event whose status is created, or status is pending but already expired. When read status that is created, then change it's status to pending.
 ### 3.3.2 How to publish
 Publish events to broker, publish a batch of events or just one.
 ### 3.3.3 How to delete event
