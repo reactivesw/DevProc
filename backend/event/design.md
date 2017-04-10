@@ -3,7 +3,7 @@ The design of the event system.
 
 # 2. Event body
 Use Json as event body and the schema of the event body:
-```Json
+```java
 {
   "id": "event id", // NOT NULL
   "createTime": long, //NOT NULL
@@ -50,16 +50,18 @@ The producer will start when the service start, each micro-service constains an 
 ![Image](./producer.png)
 
 # 4. Event Consumer
-Event consumer contains two part: `reader`, `processor`, `manager`
-## 4.1 Reader
-Event Reader read events from broker, and call the processor.
+Event consumer contains two part: `receiver`, `processor`, `manager`
+## 4.1 Receiver
+Event Receiver receive or fetch events from broker.
 ## 4.2 Processor
 All Processor have the same entrance, and handle the event. and event.
 ## 4.3 Manager
 Manager is the control center of consumer, it call reader to fetch events from broker, and then call the processor.
 ## 4.4 How to start
 The consumer will start when the service start.
-## 4.5 Work flow
+## 4.5 How to subscribe topic
+When the consumer start, then send a subscribe action to broker. The topic is configurable.
+## 4.6 Work flow
 - Event reader fetch events from broker.
 - Call processor to process the events.
 ![Image](./consumer.png)
