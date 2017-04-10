@@ -170,6 +170,10 @@ src -->
             action
             mapper
           service
+          admin -->
+            controller
+            model
+            service
         domain -->
           model
           service
@@ -201,6 +205,10 @@ src -->
 * model/mapper
 
   This package is for model mapper, whick is used to convert view model and domain model.
+
+* admin
+
+  This package is for controller, model and application used in admin web.
 
 #### 2.2.2 domain
 
