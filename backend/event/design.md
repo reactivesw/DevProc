@@ -31,6 +31,7 @@ The schema:
 
 ## 3.3 Event publisher
 The event producer read events from `event db`, and publish them to event borker.
+
 ### 3.3.1 How to Read events
 Read status whos staus is created, or status is pending but already expired.
 ### 3.3.2 How to publish
@@ -48,14 +49,16 @@ The producer will start when the service start, each micro-service constains an 
 ![Image](./producer.png)
 
 # 4. Event Consumer
-Event consumer contains two part: `event reader`, `event processor`
-## 4.1 Event reader
+Event consumer contains two part: `reader`, `processor`, `manager`
+## 4.1 Reader
 Event Reader read events from broker, and call the processor.
-## 4.2 Event processor
-All Processor have the same entrance, and handle the event.
-## 4.3 How to start
+## 4.2 Processor
+All Processor have the same entrance, and handle the event. and event.
+## 4.3 Manager
+Manager is the control center of consumer, it call reader to fetch events from broker, and then call the processor.
+## 4.4 How to start
 The consumer will start when the service start.
-## 4.4 Work flow
-- Event reader, fetch events from broker.
+## 4.5 Work flow
+- Event reader fetch events from broker.
 - Call processor to process the events.
 ![Image](./consumer.png)
