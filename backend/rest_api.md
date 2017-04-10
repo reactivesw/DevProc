@@ -14,11 +14,11 @@ Fourth, decide the resource schema. Schema is the content structure of the resou
 ## 2.5 Attach minimum set of methods to resources
 Last, determin the method we need to use on this resource.
 
-# 3 How to determine resource name
+# 3. How to determine resource name
 - Use plural
 - Use domain based name. like: `customer` not `player` in customer-info
 
-# 4 How to determine the method and the response  body
+# 4. How to determine the method and the response  body
 Method	| HTTP Mapping            | HTTP Request Body                                 | 	HTTP Response Body
 ---|---|---|---
 List    |	GET <collection URL>    | Empty	                                            | Resource list
@@ -27,7 +27,7 @@ Create	| POST <resource URL>	    | Resource                                     
 Update	| PUT <resource URL>	    | Resource	                                        | Resource
 Delete	| DELETE <resource URL>	  | Empty	or with a body with version                 | Empty
 
-# 5 How to define the URL
+# 5. How to define the URL
 - For resource type: 
 Use `domain/resources/resource-id` or `domain/resources/resource-id/sub-resources/sub-resource-id`,
 Example: `http://www.reactivesw.io/products/product1` and `http://www.reactivesw.io/products/product1/variants/variant2`
@@ -36,7 +36,7 @@ Example: `http://www.reactivesw.io/products/product1` and `http://www.reactivesw
 Use: `domain/resources` or `domain/resources/resource-id/sub-resources`
 Example: `http://www.reactivesw.io/products` and `http://www.reactivesw.io/products/product1/variants`
 
-# 6 Http Code and Errors
+# 6. Http Code and Errors
 - For correct request, the service return `200`(`HttpStatus.OK`)
 - For error or fault, the service return `4**` or `5**`, and `no response body` or a `simple response body with custom code and message` like:
 ```json
@@ -48,10 +48,10 @@ Example: `http://www.reactivesw.io/products` and `http://www.reactivesw.io/produ
 Example:
 Get a product by product id, return `200` and the product data as response body. Or return `404` for not found this product and empty response body.
 
-# 7 How to add version to API
+# 7. How to add version to API
 API version name should at the front of the url, like: `http://api.reactivesw.io/v1/products`.
 
-# 8 Others
+# 8. Others
 ## 8.1 Seach
 Seach is an special API, and should return a collection of resource.
 ## 8.2 Paging
