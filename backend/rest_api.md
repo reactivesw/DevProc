@@ -10,7 +10,7 @@ Second, figure out the relationships between resources. Such as the relationship
 ## Decide the resource name and url based on types and relationships
 Third, decide the name of the resource. Such as: use `customers` or `users`
 ## Decide the resource schemas
-Fourth, desice the resource schema. Schema is the content structure of the resource.
+Fourth, decide the resource schema. Schema is the content structure of the resource.
 ## Attach minimum set of methods to resources
 Last, determin the method we need to use on this resource.
 
