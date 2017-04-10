@@ -261,3 +261,13 @@ In class, make `public` method above `private` method.
 
 Use `constructor` to inject dependency class.
 This [article](http://vojtechruzicka.com/field-dependency-injection-considered-harmful/) explain the reason.
+
+### 3.4 boolean field
+
+Don't use `isXXX` as a boolean filed, use adjective.
+example:
+
+```java
+boolean isSelected;  //this is bad.
+boolean selected;  //this is OK.
+```

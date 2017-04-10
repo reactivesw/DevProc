@@ -20,17 +20,19 @@ PS: customized account would not  work if `Compute Engine default service accoun
 
 ## 4. install gcloud sdk
 
-use following command to download gcloud sdk and install it:
+Before install gcloud sdk, make sure that `Python 2.7` is installed on your system. `Python 3` is not supported.
+
+Use following command to download gcloud sdk and install it:
 
 ```shell
 if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
 ```
 
-after downloaded, use `source` command or restart `terminal` to make it work
+After downloaded, use `source` command or restart `terminal` to make it work
 
 `source $HOME/google-cloud-sdk/path.bash.inc`
 
-now you can use `gcloud` command, test it!
+Now you can use `gcloud` command, test it!
 
 `gcloud --quite version`
 
@@ -40,7 +42,7 @@ now you can use `gcloud` command, test it!
 
 ## 6. gcloud auth login
 
-use json file created at step 3 to login gke
+Use json file created at step 3 to login gke
 
 ```shell
 gcloud config set container/use_client_certificate True
@@ -54,7 +56,7 @@ Products & Services -> Container Engine -> Create a container cluster -> use def
 
 ## 8. connect to k8s cluster
 
-at container clusters page, click button `Connect` of cluster
+At container clusters page, click button `Connect` of cluster, and you can get script and use it to connect to k8s.
 
 ```shell
 gcloud container clusters get-credentials cluster-1 \ --zone us-central1-a --project reactivesw-project
