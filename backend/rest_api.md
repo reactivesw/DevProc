@@ -60,8 +60,9 @@ Paging should return a `Paging Resource` with page id, page size and etc.
 For `Collection` APIs, the client can add some condition for filter the resource, like: products cheaper than $20
 ## Parameter & request body
 Use Parameter for filter resources, and use request body to change existing resources.
-Example: GET `http://www.reactivesw.io/products?price=100` 
-or Post `http://www.reactivesw.io/products` with product body
-or Delete `http://www.reactivesw.io/products/product1` with request body contains version
+Example: 
+- GET `http://www.reactivesw.io/products?price=100` 
+- Post `http://www.reactivesw.io/products` with product body
+- Delete `http://www.reactivesw.io/products/product1` with request body contains version
 
 
