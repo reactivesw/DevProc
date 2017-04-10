@@ -19,13 +19,13 @@ Last, determin the method we need to use on this resource.
 - Use domain based name. like: `customer` not `player` in customer-info
 
 # How to determine the method and the response  body
-Method	| HTTP Mapping            | HTTP Request Body       | 	HTTP Response Body
+Method	| HTTP Mapping            | HTTP Request Body                                 | 	HTTP Response Body
 ---|---|---|---
-List    |	GET <collection URL>    | Empty	                  | Resource list
-Get     |	GET <resource URL>	    | Empty	                  | Resource
-Create	| POST <resource URL>	    | Resource                | Resource
-Update	| PUT <resource URL>	    | Resource	              | Resource
-Delete	| DELETE <resource URL>	  | Empty	                  | Empty
+List    |	GET <collection URL>    | Empty	                                            | Resource list
+Get     |	GET <resource URL>	    | Empty	                                            | Resource
+Create	| POST <resource URL>	    | Resource                                          | Resource
+Update	| PUT <resource URL>	    | Resource	                                        | Resource
+Delete	| DELETE <resource URL>	  | Empty	or with a body with version                 | Empty
 
 # How to define the URL
 - For resource type: 
@@ -58,4 +58,10 @@ Seach is an special API, and should return a collection of resource.
 Paging should return a `Paging Resource` with page id, page size and etc.
 ## Filters
 For `Collection` APIs, the client can add some condition for filter the resource, like: products cheaper than $20
+## Parameter & request body
+Use Parameter for filter resources, and use request body to change existing resources.
+Example: GET `http://www.reactivesw.io/products?price=100` 
+or Post `http://www.reactivesw.io/products` with product body
+or Delete `http://www.reactivesw.io/products/product1` with request body contains version
+
 
