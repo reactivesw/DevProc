@@ -64,5 +64,6 @@ Example:
 - GET `http://www.reactivesw.io/products?price=100` 
 - Post `http://www.reactivesw.io/products` with product body
 - Delete `http://www.reactivesw.io/products/product1` with request body contains version
+All request body and reponse should use type: `application/json`
 
 
