@@ -131,9 +131,8 @@ publish the event to event bus, then the producer's work is done.
 - second, create messages with those events.
 - third, publish those messages to event bus.
 
-
 # 4. Event Consumer
-Event consumer contains two part: `receiver`, `processor`, `manager`
+Event consumer contains three parts: `receiver`, `processor`, `manager`.
 ## 4.1 Receiver
 Event Receiver receive or fetch events from broker.
 ## 4.2 Processor
