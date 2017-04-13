@@ -22,12 +22,12 @@ Event created by domain services, and save it to event database. The `event crea
 ## 3.2 Event database
 The schema:
 ```Java
-  id; //UUID NOT NULL
-  createTime; // create time, NOT NULL
-  expire; //expire time
-  version; //version of the event, NOT NULL
-  status; // status of event: pending, created, NOT NULL
-  data; //the real data of the event
+  id; // String UUID NOT NULL
+  createTime; // number create time, NOT NULL
+  expire; // number expire time
+  version; // number version of the event, NOT NULL
+  status; // number status of event: pending, created, NOT NULL
+  data; // String the real data of the event
 ```
 
 ## 3.3 Event publisher
@@ -49,7 +49,7 @@ The producer will start when the service start, each micro-service constains an 
 - After publish success, delete the event from db.
 ![Image](./producer.png)
 
-## 3.6 How to add create producer
+## 3.6 How to create producer
 This section shows how to create a producer in micro service.
 ### 3.6.1 Define the event
 Different service produce different events. So the first step is define the events that this service may produced.
