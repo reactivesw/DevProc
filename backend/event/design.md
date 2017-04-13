@@ -30,22 +30,22 @@ The schema:
   data; //the real data of the event
 ```
 
-## 3.3 Event producer
-The event producer read events from `event db`, and publish them to event borker.
+## 3.3 Event publisher
+The event publisher read events from `event db`, and publish them to event borker.
 
-### 3.3.1 How to Read events
+### 3.3.1 Read events
 Read Event whose status is created, or status is pending but already expired. When read status that is created, then change it's status to pending.
-### 3.3.2 How to publish
+### 3.3.2 Publish
 Publish events to broker, publish a batch of events or just one.
-### 3.3.3 How to delete event
+### 3.3.3 Delete event
 After publish sucessed, then delete the event from the event db.
 
 ## 3.4 How to start
 The producer will start when the service start, each micro-service constains an event producer.
 
-## 3.5 Work flow
+## 3.5 Workflow
 - domain service create event, and save the event to event db.
-- the producer read event from db, and then publish it to broker.
+- the publisher read event from db, and then publish it to broker.
 - After publish success, delete the event from db.
 ![Image](./producer.png)
 
@@ -68,9 +68,9 @@ For example, `customer-authentication` service may produce `SignInEvent`:
 ```
 ### 3.6.2 Define the topics
 Different broker has different way to create topic.
-For now, we use google's pub/sub, so fellow this doc: [google pub/sub](https://cloud.google.com/pubsub/docs/)
+For now, we use google's pub/sub, so follow this doc: [google pub/sub](https://cloud.google.com/pubsub/docs/)
 ### 3.6.3 Define the event entity
-When some thing happened, then the somain service produce a event and save it to database.
+When some thing happened, then the domain service produce a event and save it to database.
 Each micro service only have one event entity(Save all event to one table), or have many different event entity. Use one event entity is suggested, because we use the common `message` to publish our events.
 For `customer-authentication` service, the event entity is:
 ```Java
@@ -151,7 +151,7 @@ When the consumer start, then send a subscribe action to broker. The topic is co
 
 ## 4.7 How to add consumer
 This section shows how to create a consumer in micro service.
-### 4.7.1 Create a subscripber for a topic
+### 4.7.1 Create a subscriber for a topic
 Create a subscriber for a topic, so that we can receive event messages from the topic.
 For now, we use google's pub/sub, so see the doc. [google pub/sub](https://cloud.google.com/pubsub/docs/)
 ### 4.7.2 Create the event model
