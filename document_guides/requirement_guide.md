@@ -5,19 +5,19 @@ For different usage, name of document should be different:
 
 * `requirement.md`
 
-   if this micro service is single usage, one document is enough.
+   If this micro service is single usage, one document is enough.
 
 * `admin_requirement.md`
 
-  requirement document for admin-web.
+  Requirement document for admin.
 
 * `customer_requirement.md`
 
-  requrement document for customer-web.
+  Requrement document for customer.
 
 ## 1. Document Structure
 
-All requirement document is `markdown` file, and the structure should be similar, here is schema:
+All requirement documents should be `markdown` file, and the structure should be similar, here is schema:
 
 ```markdown
 # Title
@@ -28,18 +28,18 @@ introduction
 requirement in list or different paragraph
 
 ## How to provide
-Link to the api document
+link to the api document
 ```
 
 ## 2. Title and introduction
 
 * Title
 
-  this is the title of the requirement document, exmaple: `Customer-Web Requirement on Category`.
+  This is the title of the requirement document, exmaple: `Customer-Web Requirement on Category`.
 
 * Introduction
 
-  in this paragraph, write the main features of this project.
+  In this paragraph, write the main features of this project.
 
 ## 3. Requirement
 
