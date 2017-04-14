@@ -43,7 +43,7 @@ link to the api document
 
 ## 3. Requirement
 
-In this park, write the requirement in detail.
+In this part, write the requirement in detail.
 
 If requirements can be divided to several main requirements and each requirement contains several simple and short requirements,
 you need to divide main requirements and its sub-requirements into different paragraph, example:
