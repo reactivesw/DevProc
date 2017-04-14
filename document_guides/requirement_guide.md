@@ -3,40 +3,45 @@
 In the `docs` folder of each project, there is a `reqirement.md` specifying the
 business requirment of the project.
 
-the requirement should contains the fellow content:
+## 1. Title -- usually it is the name of service
+Description of this micro-service -- the purpose of this service
 
-## 1. Introduction 
-a short description about project 
+## 2. The Services or futures provided
+What kinds of services or futures are provided by this micro-service. Taking
+`category` project for example, it could provide such features:
 
-## 2. Purpose
++ Create category
++ Delete category
++ Update category
++ Get individual category
++ Get all categories
 
-1. describe the purpose of project
-2. what kinds of services or features this project could provide 
+## 3. Key points
+key points of the whole project or each feature.
+Taking `category` project for example, the key points of the whole project is:
 
-Taking `category` service project for example, it could provide such sorts of
-features:
-+ create category
-+ delete category
-+ update category
-+ get individual category
-+ get all categories
+```
+1.   Name, description, meta title, meta description, meta keywords of category
+     should be multiple language.
+2.   Slug of category should be alphabetic, numeric, underscore(_) and hyphen(-)
+     characters.Maximize size of slug is 256, and minimum size is 2.
+3.   Name and slug of category are required, others is optional. Category could
+	 be multilevel.
+4.   A category can only have one parent category. each root category and its
+	 descendents form a tree structure. 
+```
 
-Thus, you should explicitly point out the supported features of your project as
-example show
+And the key points for a single, such as create category:
 
-## 3. Requirement
-it is mainly about technical requirement which pertains to the technical aspects
-that project should fulfill. This requirement typically refer to how project is
-built, such as what kind of standard it should meet, Taking `category` project
-for
-example,
-[category requirement](https://github.com/reactivesw/category/tree/master/docs)
-demonstrates the basic requirement about category, such as parameters whether it
-is required or not, relation between different category. Then it shows the
-different requirement for features it provides. 
+```
+1.   Name and slug of category should be unique.
+2.   Parent of a category could be added while creating a new category.
+3.   OrderHint will be generated automatically by server.
+```
 
-
-
+## 4. Services dependencies
+This is optional, if this micro-service depends on other services, dependencies
+should be demonstrated clearly. 
 
 
 
