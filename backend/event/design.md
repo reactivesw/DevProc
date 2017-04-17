@@ -6,7 +6,7 @@ Use Json as event body and the schema of the event body:
 ```java
 {
   "id": "event id", // NOT NULL
-  "createTime": long, //NOT NULL
+  "createdTime": long, //NOT NULL
   "expire": long,
   "sequenceNumber":long,
   "data": "json string" // JSON DATA
