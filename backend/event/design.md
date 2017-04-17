@@ -22,37 +22,37 @@ Event created by domain services, and save it to event database. The `event crea
 ## 3.2 Event database
 The schema:
 ```Java
-  id; //UUID NOT NULL
-  createTime; // create time, NOT NULL
-  expire; //expire time
-  version; //version of the event, NOT NULL
-  status; // status of event: pending, created, NOT NULL
-  data; //the real data of the event
+  id; // String UUID NOT NULL
+  createTime; // number create time, NOT NULL
+  expire; // number expire time
+  version; // number version of the event, NOT NULL
+  status; // number status of event: pending, created, NOT NULL
+  data; // String the real data of the event
 ```
 
-## 3.3 Event producer
-The event producer read events from `event db`, and publish them to event borker.
-
-### 3.3.1 How to Read events
+## 3.3 Event publisher
+The event publisher read events from `event db`, and publish them to event borker.
+The Workflow of publisher:
+- First, read events
 Read Event whose status is created, or status is pending but already expired. When read status that is created, then change it's status to pending.
-### 3.3.2 How to publish
+- Second, publish
 Publish events to broker, publish a batch of events or just one.
-### 3.3.3 How to delete event
+- Third, delete event
 After publish sucessed, then delete the event from the event db.
 
 ## 3.4 How to start
 The producer will start when the service start, each micro-service constains an event producer.
 
-## 3.5 Work flow
+## 3.5 Workflow
 - domain service create event, and save the event to event db.
-- the producer read event from db, and then publish it to broker.
+- the publisher read event from db, and then publish it to broker.
 - After publish success, delete the event from db.
 ![Image](./producer.png)
 
-## 3.6 How to add create producer
+## 3.6 Guide of how to build producer
 This section shows how to create a producer in micro service.
 ### 3.6.1 Define the event
-Different service produce different events. So the first step is define the events that this service may produced.
+Different service produce different events. So the first step is define the events that this service may produce.
 For example, `customer-authentication` service may produce `SignInEvent`:
 ```Java
 
@@ -68,9 +68,9 @@ For example, `customer-authentication` service may produce `SignInEvent`:
 ```
 ### 3.6.2 Define the topics
 Different broker has different way to create topic.
-For now, we use google's pub/sub, so fellow this doc: [google pub/sub](https://cloud.google.com/pubsub/docs/)
+For now, we use google's pub/sub, so follow this doc: [google pub/sub](https://cloud.google.com/pubsub/docs/)
 ### 3.6.3 Define the event entity
-When some thing happened, then the somain service produce a event and save it to database.
+When some thing happened, then the domain service produce a event and save it to database.
 Each micro service only have one event entity(Save all event to one table), or have many different event entity. Use one event entity is suggested, because we use the common `message` to publish our events.
 For `customer-authentication` service, the event entity is:
 ```Java
@@ -126,53 +126,57 @@ Producer producer = DefaultProducerFactory.createGoogleProducer(`projectId`, `to
 ```
 As we may got several topic, so we need to create the same number of producer.
 #### 3.6.5.3 publish the event to event bus
-publish the event to event bus, then the producer's work is done.
+Publish the event to event bus, then the producer's work is done.
 - first, fetch the events from db, and change their status to `PENDING`. or fetch those event whose status is `PENDING`, but created long time ago(maybe one minute ago).
 - second, create messages with those events.
 - third, publish those messages to event bus.
-
+#### 3.6.5.4 Delete the event from db
+After publish success, then delete the event from db.
 
 # 4. Event Consumer
-Event consumer contains two part: `receiver`, `processor`, `manager`
-## 4.1 Receiver
+Event consumer contains three parts: `receiver`, `processor`, `manager`.
+- Receiver
 Event Receiver receive or fetch events from broker.
-## 4.2 Processor
+- Processor
 All Processor have the same entrance, and handle the event. and event.
-## 4.3 Manager
+- Manager
 Manager is the control center of consumer, it call reader to fetch events from broker, and then call the processor.
-## 4.4 How to start
-The consumer will start when the service start.
-## 4.5 How to subscribe topic
-When the consumer start, then send a subscribe action to broker. The topic is configurable.
-## 4.6 Work flow
+## 4.1 How to start
+The consumer should started with the service.
+## 4.2 How to subscribe topic
+When the consumer started, then send a subscribe action to broker. The topic should be configurable.
+## 4.3 Workflow
 - Event reader fetch events from broker.
 - Call processor to process the events.
 ![Image](./consumer.png)
+- Acknowledge the borker of processed events.
 
-## 4.7 How to add consumer
+## 4.4 Guide of how to build consumer
 This section shows how to create a consumer in micro service.
-### 4.7.1 Create a subscripber for a topic
+### 4.4.1 Create a subscriber for a topic
 Create a subscriber for a topic, so that we can receive event messages from the topic.
 For now, we use google's pub/sub, so see the doc. [google pub/sub](https://cloud.google.com/pubsub/docs/)
-### 4.7.2 Create the event model
+### 4.4.2 Create the event model
 Each topic contains a kind of event, and get the event model schema from producer, and create the model.
-### 4.7.3 Create consumer
+### 4.4.3 Create consumer
 Event consumer  is a service that circulate running. Since we used springboot, so we can use the `Scheduled Job` for this service.
-#### 4.7.3.1 Create a circulate running service.
-#### 4.7.3.2 Create a consumer client with `message-client` lib
+#### 4.4.3.1 Create a circulate running service.
+#### 4.4.3.2 Create a consumer client with `message-client` lib
 For now, use google's pubsub consumer:
 ```java
   Consumer consumer = DefaultConsumerFactory.createGoogleConsumer(projectId, subscriberId)
 ```
-#### 4.7.3.3 Fetch event messages
+#### 4.4.3.3 Fetch event messages
+
 For now, we use pull:
 ```java
   List<Message> events = consumer.pullMessages(10);
 ```
-#### 4.7.3.4 Process messages
+
+#### 4.4.3.4 Process messages
 Process the message with detail actions.
 **Make sure that the process action is idempotent**
 
-#### 4.7.3.5 Acknowledge the broker 
+#### 4.4.3.5 Acknowledge the broker 
 Acknowledge the borker that the message has been processed, so that the message will not be received again.
 And for now, the consumer's work is done
