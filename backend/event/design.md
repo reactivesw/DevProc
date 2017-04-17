@@ -23,7 +23,7 @@ Event created by domain services, and save it to event database. The `event crea
 The schema:
 ```Java
   id; // String UUID NOT NULL
-  createTime; // number create time, NOT NULL
+  createdTime; // number create time, NOT NULL
   expire; // number expire time
   version; // number version of the event, NOT NULL
   status; // number status of event: pending, created, NOT NULL
