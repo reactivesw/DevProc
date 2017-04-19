@@ -30,6 +30,9 @@ design point
 
 ## 3. Workflow
 workflow list
+
+## 4. Event Design
+event design detail
 ```
 
 ## 2. Title
@@ -114,3 +117,32 @@ In this part, describe the workflow about the main features, here is exampke:
 2. step2
 3. step3
 ```
+
+## 6. Event Design
+
+This part is optinal, if a project produces or consumese event, must describe how to echieve it in this part.
+
+For event producer, should define the model and topic here, example:
+
+```markdown
+## 4. Event Design
+
+### 4.1 Event Simple Description
+
+#### 4.1.1 Model Design
+
+* event entity
+
+A table describe the event entity.
+
+* event data
+
+A table describe the real data of the event.
+
+#### 4.1.2 Topic Design
+
+Topic name: `topic-name`.
+
+```
+
+If produce different, should describe them in different paragraph.
