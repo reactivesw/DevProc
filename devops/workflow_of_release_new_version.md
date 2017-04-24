@@ -7,9 +7,9 @@ we usually got three kind of reasons to create branch
 - Create branch for a new change
 - Create branch for a hot fix
 
-1. Create branch for new version
-
+## Create branch for new version
   Each time, we want to upgrade one service, we need to create a new version for this. 
+
 - Naming: 
 
   Name the branch `dev`, and change the version of this branch to the version you need, such as `0.0.4`
@@ -20,12 +20,10 @@ we usually got three kind of reasons to create branch
 
   After the version tested, then you can merge it to master
 
-2. Create branch for new change
-
+## Create branch for new change
   Usually we use this kind of changes on `dev` branch.
 
-3. Create branch for hot fix
-
+## Create branch for hot fix
   When the master got a error, and we need to fix it as soon as possible. We create a branch from `master`, and when we fixed, then merge it to master, and change the small version of master.
 
 
