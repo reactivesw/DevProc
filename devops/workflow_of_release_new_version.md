@@ -1,13 +1,13 @@
 # Workflow of release new version of services
 This doc describes the flow of release mircro-services and e-commerce.
 
-# Tips: How to create branch
+## Tips: How to create branch
 we usually got three kind of reasons to create branch
 - Create branch for new version
 - Create branch for a new change
 - Create branch for a hot fix
 
-## Create branch for new version
+### Create branch for new version
   Each time, we want to upgrade one service, we need to create a new version for this. 
 
 - Naming: 
@@ -20,10 +20,10 @@ we usually got three kind of reasons to create branch
 
   After the version tested, then you can merge it to master
 
-## Create branch for new change
+### Create branch for new change
   Usually we use this kind of changes on `dev` branch.
 
-## Create branch for hot fix
+### Create branch for hot fix
   When the master got a error, and we need to fix it as soon as possible. We create a branch from `master`, and when we fixed, then merge it to master, and change the small version of master.
 
 
