@@ -4,18 +4,96 @@
 
 ### 1.1. Initialize a Vuejs Project
 Run `yarn global add vue-cli@latest` to install the latest vue-client.  
+Run `vue init webpack my-project` to create a new project named `my-project`. When asked, use recommended settings and answer "N" to vue-router, ESLint, unit test and e2e test.  
 
-Run `vue init webpack my-project` to create a new project named `my-project`. When asked, use recommended settings and answer "Y" to vue-router, ESLint, unit test and e2e test.  
+Copy [resources/gitignore](./resources/gitignore) to the `.gitignore` file in the project folder. 
 
-### 2.2. Customize Configuration and Install Packages
-To make the root folder less crowded, move the `index.html` to the `src/` folder.
-Change the line `template: 'index.html'` to `template: 'src/index.html'` in both `build/webpack.dev.conf.js` and `build/webpack.prod.conf.js`.
+### 1.2. Use TypeScript Instead of Babel
 
-Edit `package.json` file to update vue and vue-router to the latest verion. 
-Run `yarn install` to  install all packages used in the project. 
+#### 1.2.1. Remove babel packages
+We use TypeScript go generate all JavaScript ES5 code, therefore there is no need to to use Bable in this project. In package.json, remove all lines having a "babel" prefix.
+
+#### 1.2.2. Install `typescript` and `ts-loader`
+Then install typescript and ts-loader packages. ts-loader works with vue-loader (installed by vue-cli in project intialization) to process TypeScript code in a vue file.
+
+```sh
+yarn add -D typescript
+yarn add -D ts-loader
+```
+#### 1.2.3. Convert TypeScript File
+Rename `src/main.js` to `src/main.ts`. 
+In all `.vue` files, add `lang="ts"` to all `<script>` tag. 
+
+#### 1.2.3. Use and Build Typescript File
+Edit build/webpack.base.conf.js to have the following changes:
+
+```js
+// 1. change the entry to a .ts file
+entry: {
+  app: './src/main.ts'
+},
+
+// 2. add resolve extensions for '.ts'
+resolve: {
+  extensions: ['.js', '.vue', '.json', '.ts'],
+  // ...
+}
+
+// 3. in "module: { loaders: []", replace the "bable loader for js test" to "ts-loader for ts test" 
+{
+  test: /\.ts$/,
+  loader: 'ts-loader',
+  include: [resolve('src')],
+  exclude: [resolve('node_modules')],
+  options: {
+    appendTsSuffixTo: [/\.vue$/]
+  }
+}
+```
+
+#### 1.2.4. Config TypeScript
+Create a `tsconfig.json` file in the project root folder and add the following content: 
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "es6", // write es6 code, compile to es5
+      "dom"
+    ],
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "sourceMap": true,
+    // the following three options are recommended by
+    // https://vuejs.org/v2/guide/typescript.html to allow ES module
+    "allowSyntheticDefaultImports": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+
+    // to use the @Component decorate
+    // https://github.com/vuejs/vue-class-component#vue-class-component
+    "experimentalDecorators": true,
+
+    // use absolute path in ts file
+    "baseUrl": "./",
+    "typeRoots": [
+      // required for local type definition such as FB
+      "./typings",
+      // required for node type definitioin such as require
+      "./node_modules/@types"
+    ]
+  }
+}
+```
+
+### 1.3. Move `index.html` to `src/` Folder
+To make the root folder less crowded, move the `index.html` to the `src/` folder. Change the line `template: 'index.html'` to `template: 'src/index.html'` in both `build/webpack.dev.conf.js` and `build/webpack.prod.conf.js`.
+
+### 1.4. Update, Install and Run
+Edit `package.json` file to update vue to the latest verion. 
+Run `yarn` to  install all packages used in the project. 
 Run `yarn run dev` to check that the site is up and running correctly. 
-
-Finally, copy [resources/gitignore](./resources/gitignore) to the `.gitignore` file in the project folder. 
 
 ## 2. Architecture Overview
 The architecture is about the relationship among components. 
