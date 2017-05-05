@@ -90,10 +90,27 @@ Create a `tsconfig.json` file in the project root folder and add the following c
 ### 1.3. Move `index.html` to `src/` Folder
 To make the root folder less crowded, move the `index.html` to the `src/` folder. Change the line `template: 'index.html'` to `template: 'src/index.html'` in both `build/webpack.dev.conf.js` and `build/webpack.prod.conf.js`.
 
-### 1.4. Update, Install and Run
+### 1.4. Remove VS Code Warning for Vue Files
+To get rid of IDE error message for importing vue components in ts code. We disable `tsc` code analysis for all components by creating a `typings/vue.d.ts` with the following content: 
+
+```js
+declare module 'src/components/*' {
+  import Vue = require('vue')
+  const value: Vue.ComponentOptions<Vue>
+  export default value
+}
+```
+
+To make it effective, we also need to use absolute paths in componet importing. First, we set an alias for the `src` folder in `build/webapck.base.conf.js`, add a new line or replace the `'@'` alias to `'src': resolve('src')` in `resolve -> alias` section.
+
+Then move `App.vue` to the `components` folder. 
+
+Finally change `main.ts` and `App.vue` to import components from the correct absolute path.   
+
+### 1.5. Update, Install and Run
 Edit `package.json` file to update vue to the latest verion. 
 Run `yarn` to  install all packages used in the project. 
-Run `yarn run dev` to check that the site is up and running correctly. 
+Run `yarn start` to check that the site is up and running correctly. 
 
 ## 2. Architecture Overview
 The architecture is about the relationship among components. 
