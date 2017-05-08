@@ -35,7 +35,7 @@ Consumer should retry when process an event failed. The retry rule should be con
 
 # 5. Event Broker
 Event Broker store events.
-## 5.1 Broker can store evnets
+## 5.1 Broker can store events
 Broker can store events for a customized time.
 ## 5.2 Broker should delete expired event
 ## 5.3 Broker should support multi channel or topic
