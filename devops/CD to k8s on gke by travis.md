@@ -2,7 +2,7 @@
 
 ## 1. 说明
 
-使用travis自动部署项目到k8s上，实际上是使用`gcloud`登陆`gke`，并且连接上`k8s cluster`并且使用`kubectl`部署相关项目，而自动部署就是把这些工作转变为travis的脚步顺序执行。
+使用travis自动部署项目到k8s上，实际上是使用`gcloud`登陆`gke`，并且连接上`k8s cluster`并且使用`kubectl`部署相关项目，而自动部署就是把这些工作转变为travis的脚本顺序执行。
 整个部署过程包括如下命令:
 
 ```shell
