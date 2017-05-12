@@ -1,8 +1,8 @@
-#Auto Deploy to Kubernetes
+# Auto Deploy to Kubernetes
 This document describes how to automatically deploy services to kubernetes.
 
 ## 1. Kubernetes API
-k8s provide a log of restful api([api reference](http://kubernetes.io/docs/api-reference/v1/operations/)) to manage k8s resources like rc , pod e.g.
+k8s provide a lot of restful api([api reference](http://kubernetes.io/docs/api-reference/v1/operations/)) to manage k8s resources like rc , pod e.g.
 In the whole deployment process, use following api:
 * delete a ReplicationController
   `DELETE /api/v1/namespaces/{namespace}/replicationcontrollers/{name}`
