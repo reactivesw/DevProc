@@ -1,0 +1,18 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: customer-web
+  namespace: dev
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: customer-web
+    spec:
+      containers:
+        - name: customer-web
+          image: 'reactivesw/customer-web:0.0.6'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
