@@ -1,0 +1,11 @@
+{
+  "name": "deploy-server",
+  "version": "1.0.0",
+  "description": "customer-web deploy server",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
