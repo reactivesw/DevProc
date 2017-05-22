@@ -64,3 +64,11 @@ $fa-font-path: "~font-awesome/fonts";
 ```
 
 Now all font-awesome icons can be used. 
+
+# BEM methodology
+
+We use BEM as our css naming guideline to write better css.
+
+> BEM — Block Element Modifier is a methodology that helps you to create reusable components and code sharing in front-end development
+
+There're a lot of tutorial and guides of it, visit [here](http://getbem.com/introduction/) to read them.
